@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">LaSecta App</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Salir</string>
+    <string name="item_menu_calendario">Calendario</string>
+    <string name="item_menu_clasificacion">Clasificacion</string>
+    <string name="item_menu_goleadores">Goleadores</string>
+    <string name="item_menu_portal">P. del Federado</string>
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/baseline_calendar_month_24"
+            android:title="@string/item_menu_calendario" />
+        <item
+            android:id="@+id/nav_clasificacion"
+            android:icon="@drawable/baseline_table_chart_24"
+            android:title="@string/item_menu_clasificacion" />
+        <item
+            android:id="@+id/nav_goleadores"
+            android:icon="@drawable/baseline_sports_soccer_24"
+            android:title="@string/item_menu_goleadores" />
+        <item
+            android:id="@+id/nav_portal"
+            android:icon="@drawable/baseline_account_box_24"
+            android:title="@string/item_menu_portal" />
+    </group>
+
+</menu>

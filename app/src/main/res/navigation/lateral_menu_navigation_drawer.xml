@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/item_menu_calendario"
+            android:icon="@drawable/baseline_calendar_month_24"
+            android:title="Calendario" />
+
+        <item
+            android:id="@+id/item_menu_clasificacion"
+            android:icon="@drawable/baseline_table_chart_24"
+            android:title="Clasificacion" />
+
+        <item
+            android:id="@+id/item_menu_goleadores"
+            android:icon="@drawable/baseline_sports_soccer_24"
+            android:title="Goleadores" />
+
+        <item
+            android:id="@+id/item_menu_portal"
+            android:icon="@drawable/baseline_account_box_24"
+            android:title="P. del Federado" />
+
+    </group>
+
+
+</menu>
