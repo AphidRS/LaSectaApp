@@ -15,15 +15,3 @@ A
 gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
 `
 0app/src/main/java/com/lasectaapp/MainActivity.kt,c\e\ce8ced642ba0b9709cce0c14d38f7034055ea68f
-s
-Capp/src/main/java/com/lasectaapp/fragments/FragmentClasificacion.kt,2\5\25f260d7b887083112bf5ff3d7332789130c89b5
-p
-@app/src/main/java/com/lasectaapp/fragments/FragmentGoleadores.kt,2\b\2b6fa5b57ac199515c41383309b4e7056364c694
-l
-<app/src/main/java/com/lasectaapp/fragments/FragmentPortal.kt,1\8\1889261720f81b8086a65d0b3bb09b5b5d5f4b9d
-D
-app/build.gradle.kts,d\2\d2a4383452aad84a18429a5844d31330a012a9e6
-@
-build.gradle.kts,d\b\dbcff70658daf80b53ce624f6adcaa529df5ed8d
-j
-:app/src/main/java/com/lasectaapp/fragments/FragmentHome.kt,1\9\191324c4f0aa711ccb00af89435c9051f35387b7

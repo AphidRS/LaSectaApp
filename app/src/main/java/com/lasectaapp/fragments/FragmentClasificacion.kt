@@ -1,7 +1,6 @@
 package com.lasectaapp.fragments
 
 import android.annotation.SuppressLint
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebView
@@ -54,13 +53,13 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
     override fun onResume() {
         super.onResume()
         // Forzar orientación de la actividad a landscape cuando el fragmento está visible
-        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        //activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
     }
 
     override fun onPause() {
         super.onPause()
         // Cambiar la orientación a portrait antes de salir
-        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        //activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 
     override fun onDestroyView() {
@@ -68,6 +67,7 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
         webView.destroy() // Limpiar el WebView si es necesario para liberar recursos
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun setWebView() {
         webView = binding.webWindow
         webView.settings.javaScriptEnabled = true
@@ -85,13 +85,12 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
     private fun injectRemoveContentScript() {
         val jsScript = """
     (function() {
-           
         // Eliminar elementos con la clase 'jss3'
         var elements = document.getElementsByClassName('jss3');
         while(elements.length > 0) {
             elements[0].parentNode.removeChild(elements[0]);
         }
-        
+
         // Eliminar elementos con múltiples clases usando querySelectorAll
         var elements = document.querySelectorAll('.MuiContainer-root.jss4.jss441');
         elements.forEach(function(el) {
@@ -99,18 +98,26 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
         });
 
         // Eliminar otros elementos por su clase
-        var classesToRemove = ['jss10', 'jss11', 'rightSidebar', 'tickerHolder', 'filtro-busqueda', 'filterstyle', 'footer'];
+        var classesToRemove = ['jss10', 'jss11', 'rightSidebar', 'tickerHolder', 'footer'];
         classesToRemove.forEach(function(className) {
             var elements = document.getElementsByClassName(className);
             while(elements.length > 0) {
                 elements[0].parentNode.removeChild(elements[0]);
             }
         });
-        
+
         // Ajustar padding de elementos con clase 'MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12'
         var element = document.querySelector('.MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12');
-        if (element) { element.style.padding = '0px';}
+        if (element) { 
+            element.style.padding = '0px';     
+        }
 
+        // Ajustar font-size de elementos con clase 'MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12'
+        var element = document.querySelector('.MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12');
+        if (element) {
+            element.style.fontSize = '6px'; 
+        }
+        
         // Eliminar el footer
         var footer = document.querySelector('footer');
         if (footer) {
@@ -123,10 +130,14 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
             muiBox.parentNode.removeChild(muiBox);
         }
         
-        // Seleccionar el elemento por todas sus clases
+        // Seleccionar el elemento por todas sus clases y ajustar el tamaño de fuente
         var elements = document.querySelectorAll('.MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-1');
-        
-    })();"""
+        elements.forEach(function(el) {
+            el.style.fontSize = '10px';
+        });
+    })();
+    """
         webView.evaluateJavascript(jsScript, null)
     }
+
 }
