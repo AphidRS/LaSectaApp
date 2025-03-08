@@ -84,82 +84,82 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
 
     private fun injectRemoveContentScript() {
         val jsScript = """
-    (function() {
-           
-        // Eliminar elementos con la clase 'jss3'
-        var elements = document.getElementsByClassName('jss3');
-        while(elements.length > 0) {
-            elements[0].parentNode.removeChild(elements[0]);
-        }
-        
-        // Eliminar elementos con múltiples clases usando querySelectorAll
-        var elements = document.querySelectorAll('.MuiContainer-root.jss4.jss441');
-        elements.forEach(function(el) {
-            el.parentNode.removeChild(el);
-        });
+        (function() {
 
-        // Eliminar otros elementos por su clase
-        var classesToRemove = ['jss10', 'jss11', 'rightSidebar', 'tickerHolder', 'filtro-busqueda', 'filterstyle', 'footer'];
-        classesToRemove.forEach(function(className) {
-            var elements = document.getElementsByClassName(className);
+            // Eliminar elementos con la clase 'jss3'
+            var elements = document.getElementsByClassName('jss3');
             while(elements.length > 0) {
                 elements[0].parentNode.removeChild(elements[0]);
             }
-        });
-        
-        // Ajustar padding de elementos con clase 'MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12'
-        var element = document.querySelector('.MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12');
-        if (element) { element.style.padding = '0px';}
+            
+            // Eliminar elementos con múltiples clases usando querySelectorAll
+            var elements = document.querySelectorAll('.MuiContainer-root.jss4.jss441');
+            elements.forEach(function(el) {
+                el.parentNode.removeChild(el);
+            });
 
-        // Eliminar el footer
-        var footer = document.querySelector('footer');
-        if (footer) {
-            footer.parentNode.removeChild(footer);
-        }
+            // Eliminar otros elementos por su clase
+            var classesToRemove = ['jss10', 'jss11', 'rightSidebar', 'tickerHolder', 'filtro-busqueda', 'filterstyle', 'footer'];
+            classesToRemove.forEach(function(className) {
+                var elements = document.getElementsByClassName(className);
+                while(elements.length > 0) {
+                    elements[0].parentNode.removeChild(elements[0]);
+                }
+            });
+            
+            // Ajustar padding de elementos con clase 'MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12'
+            var element = document.querySelector('.MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12');
+            if (element) { element.style.padding = '0px'; }
 
-        // Eliminar un elemento con clases 'MuiBox-root' y 'js443'
-        var muiBox = document.querySelector('.MuiBox-root.js443');
-        if (muiBox) {
-            muiBox.parentNode.removeChild(muiBox);
-        }
-        
-        // Seleccionar el elemento por todas sus clases y ajustar el tamaño de fuente
-        var elements = document.querySelectorAll('.MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-1');
-        
-        elements.forEach(function(el) {
-        el.style.fontSize = '10px';
-        });
-        
-        // Reemplazar las cabeceras de la clasificacion
-        var classesToRemove = ['MuiBox-root jss73','MuiBox-root jss74','MuiBox-root jss75','MuiBox-root jss76','MuiBox-root jss77','MuiBox-root jss80'];
+            // Eliminar el footer
+            var footer = document.querySelector('footer');
+            if (footer) {
+                footer.parentNode.removeChild(footer);
+            }
 
-        classesToRemove.forEach(function(className) {
-          switch (className) {
-            case 'MuiBox-root jss73':
-              
-              break;
-            case 'MuiBox-root jss74':
-                document.querySelector('.MuiBox-root.jss74').innerHTML = 'PT';  
-              break;
-            case 'MuiBox-root jss75':
-                document.querySelector('.MuiBox-root.jss74').innerHTML = 'J';
-              break;
-            case 'MuiBox-root jss76':
-                document.querySelector('.MuiBox-root.jss74').innerHTML = 'G';
-              break;
-            case 'MuiBox-root jss77':
-                document.querySelector('.MuiBox-root.jss74').innerHTML = 'E';
-              break;
-            case 'MuiBox-root jss80':
-                document.querySelector('.MuiBox-root.jss74').innerHTML = 'P';
-              break;
-            default:
+            // Eliminar un elemento con clases 'MuiBox-root' y 'js443'
+            var muiBox = document.querySelector('.MuiBox-root.js443');
+            if (muiBox) {
+                muiBox.parentNode.removeChild(muiBox);
+            }
+            
+            // Seleccionar el elemento por todas sus clases y ajustar el tamaño de fuente
+            var elements = document.querySelectorAll('.MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-1');
+            elements.forEach(function(el) {
+                el.style.fontSize = '10px';
+            });
+            
+            // Reemplazar las cabeceras de la clasificación
+            var classesToRemove = ['MuiBox-root jss73','MuiBox-root jss74','MuiBox-root jss75','MuiBox-root jss76','MuiBox-root jss77','MuiBox-root jss80'];
 
-          }
-        });
-        
-    })();"""
+            classesToRemove.forEach(function(className) {
+                switch (className) {
+                    case 'MuiBox-root jss73':
+                        document.querySelector('.MuiBox-root.jss73').innerHTML = 'PT';  
+                        break;
+                    case 'MuiBox-root jss74':
+                        document.querySelector('.MuiBox-root.jss74').innerHTML = 'J';  
+                        break;
+                    case 'MuiBox-root jss75':
+                        document.querySelector('.MuiBox-root.jss75').innerHTML = 'G';  
+                        break;
+                    case 'MuiBox-root jss76':
+                        document.querySelector('.MuiBox-root.jss76').innerHTML = 'E';  
+                        break;
+                    case 'MuiBox-root jss77':
+                        document.querySelector('.MuiBox-root.jss77').innerHTML = 'P';  
+                        break;
+                    case 'MuiBox-root jss80':
+                        document.querySelector('.MuiBox-root.jss80').innerHTML = 'Another Text';  
+                        break;
+                    default:
+                        // Default case, if needed
+                }
+            });
+            
+        })();"""
 
         webView.evaluateJavascript(jsScript, null)
     }
+
 }
