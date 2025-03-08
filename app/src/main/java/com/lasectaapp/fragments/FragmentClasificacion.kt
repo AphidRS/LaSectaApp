@@ -129,37 +129,76 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
                 el.style.fontSize = '10px';
             });
             
-            // Reemplazar las cabeceras de la clasificación
-            var classesToRemove = ['MuiBox-root jss73','MuiBox-root jss74','MuiBox-root jss75','MuiBox-root jss76','MuiBox-root jss77','MuiBox-root jss80'];
-
-            classesToRemove.forEach(function(className) {
-                switch (className) {
-                    case 'MuiBox-root jss73':
-                        document.querySelector('.MuiBox-root.jss73').innerHTML = 'PT';  
-                        break;
-                    case 'MuiBox-root jss74':
-                        document.querySelector('.MuiBox-root.jss74').innerHTML = 'J';  
-                        break;
-                    case 'MuiBox-root jss75':
-                        document.querySelector('.MuiBox-root.jss75').innerHTML = 'G';  
-                        break;
-                    case 'MuiBox-root jss76':
-                        document.querySelector('.MuiBox-root.jss76').innerHTML = 'E';  
-                        break;
-                    case 'MuiBox-root jss77':
-                        document.querySelector('.MuiBox-root.jss77').innerHTML = 'P';  
-                        break;
-                    case 'MuiBox-root jss80':
-                        document.querySelector('.MuiBox-root.jss80').innerHTML = 'Another Text';  
-                        break;
-                    default:
-                        // Default case, if needed
+            function updateHeaders() {
+                // Reemplazar las cabeceras de la clasificación
+                var classesToRemove = ['MuiBox-root jss73', 'MuiBox-root jss74', 'MuiBox-root jss75', 'MuiBox-root jss76', 'MuiBox-root jss77', 'MuiBox-root jss80'];
+    
+                classesToRemove.forEach(function(className) {
+                    var element;
+                    switch (className) {
+                        case 'MuiBox-root jss73':
+                            element = document.querySelector('.MuiBox-root.jss73');
+                            if (element) {
+                                element.textContent = 'PT';
+                            }
+                            break;
+                        case 'MuiBox-root jss74':
+                            element = document.querySelector('.MuiBox-root.jss74');
+                            if (element) {
+                                element.innerHTML = 'J';
+                            }
+                            break;
+                        case 'MuiBox-root jss75':
+                            element = document.querySelector('.MuiBox-root.jss75');
+                            if (element) {
+                                element.innerHTML = 'G';
+                            }
+                            break;
+                        case 'MuiBox-root jss76':
+                            element = document.querySelector('.MuiBox-root.jss76');
+                            if (element) {
+                                element.innerHTML = 'E';
+                            }
+                            break;
+                        case 'MuiBox-root jss77':
+                            element = document.querySelector('.MuiBox-root.jss77');
+                            if (element) {
+                                element.innerHTML = 'P';
+                            }
+                            break;
+                        case 'MuiBox-root jss80':
+                            element = document.querySelector('.MuiBox-root.jss80');
+                            if (element) {
+                                element.innerHTML = 'SC';
+                            }
+                            break;
+                        default:
+                            // Caso predeterminado, si es necesario
+                    }
+                });
+            }
+        
+        function replaceText(targetText, newText) {
+        var elements = document.getElementsByTagName('*');
+        for (var i = 0; i < elements.length; i++) {
+            var element = elements[i];
+            for (var j = 0; j < element.childNodes.length; j++) {
+                var node = element.childNodes[j];
+                if (node.nodeType === 3) { // Node de tipo texto
+                    var text = node.nodeValue;
+                    var replacedText = text.replace(targetText, newText);
+                    if (replacedText !== text) {
+                        node.nodeValue = replacedText;
+                    }
                 }
-            });
+            }
+        }
+        
+        replaceText('Puntos', 'PT');
+        updateHeaders();
             
         })();"""
 
         webView.evaluateJavascript(jsScript, null)
     }
-
 }
