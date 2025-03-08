@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.lasectaapp.R
 import com.lasectaapp.databinding.FragmentGoleadoresBinding
 
-class FragmentGoleadores : Fragment(R.layout.fragment_goleadores) {
+class   FragmentGoleadores : Fragment(R.layout.fragment_goleadores) {
     private lateinit var binding : FragmentGoleadoresBinding
     private lateinit var webView : WebView
     private lateinit var progressBar: ProgressBar

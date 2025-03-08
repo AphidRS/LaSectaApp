@@ -1,6 +1,7 @@
 package com.lasectaapp.fragments
 
 import android.annotation.SuppressLint
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebView
@@ -67,7 +68,6 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
         webView.destroy() // Limpiar el WebView si es necesario para liberar recursos
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
     private fun setWebView() {
         webView = binding.webWindow
         webView.settings.javaScriptEnabled = true
@@ -85,12 +85,13 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
     private fun injectRemoveContentScript() {
         val jsScript = """
     (function() {
+           
         // Eliminar elementos con la clase 'jss3'
         var elements = document.getElementsByClassName('jss3');
         while(elements.length > 0) {
             elements[0].parentNode.removeChild(elements[0]);
         }
-
+        
         // Eliminar elementos con múltiples clases usando querySelectorAll
         var elements = document.querySelectorAll('.MuiContainer-root.jss4.jss441');
         elements.forEach(function(el) {
@@ -98,26 +99,18 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
         });
 
         // Eliminar otros elementos por su clase
-        var classesToRemove = ['jss10', 'jss11', 'rightSidebar', 'tickerHolder', 'footer'];
+        var classesToRemove = ['jss10', 'jss11', 'rightSidebar', 'tickerHolder', 'filtro-busqueda', 'filterstyle', 'footer'];
         classesToRemove.forEach(function(className) {
             var elements = document.getElementsByClassName(className);
             while(elements.length > 0) {
                 elements[0].parentNode.removeChild(elements[0]);
             }
         });
-
+        
         // Ajustar padding de elementos con clase 'MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12'
         var element = document.querySelector('.MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12');
-        if (element) { 
-            element.style.padding = '0px';     
-        }
+        if (element) { element.style.padding = '0px';}
 
-        // Ajustar font-size de elementos con clase 'MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12'
-        var element = document.querySelector('.MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12');
-        if (element) {
-            element.style.fontSize = '6px'; 
-        }
-        
         // Eliminar el footer
         var footer = document.querySelector('footer');
         if (footer) {
@@ -132,12 +125,41 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
         
         // Seleccionar el elemento por todas sus clases y ajustar el tamaño de fuente
         var elements = document.querySelectorAll('.MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-1');
+        
         elements.forEach(function(el) {
-            el.style.fontSize = '10px';
+        el.style.fontSize = '10px';
         });
-    })();
-    """
+        
+        // Reemplazar las cabeceras de la clasificacion
+        var classesToRemove = ['MuiBox-root jss73','MuiBox-root jss74','MuiBox-root jss75','MuiBox-root jss76','MuiBox-root jss77','MuiBox-root jss80'];
+
+        classesToRemove.forEach(function(className) {
+          switch (className) {
+            case 'MuiBox-root jss73':
+              
+              break;
+            case 'MuiBox-root jss74':
+                document.querySelector('.MuiBox-root.jss74').innerHTML = 'PT';  
+              break;
+            case 'MuiBox-root jss75':
+                document.querySelector('.MuiBox-root.jss74').innerHTML = 'J';
+              break;
+            case 'MuiBox-root jss76':
+                document.querySelector('.MuiBox-root.jss74').innerHTML = 'G';
+              break;
+            case 'MuiBox-root jss77':
+                document.querySelector('.MuiBox-root.jss74').innerHTML = 'E';
+              break;
+            case 'MuiBox-root jss80':
+                document.querySelector('.MuiBox-root.jss74').innerHTML = 'P';
+              break;
+            default:
+
+          }
+        });
+        
+    })();"""
+
         webView.evaluateJavascript(jsScript, null)
     }
-
 }
