@@ -1,7 +1,6 @@
 package com.lasectaapp.fragments
 
 import android.annotation.SuppressLint
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebView
@@ -178,26 +177,43 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
                 });
             }
         
-        function replaceText(targetText, newText) {
-        var elements = document.getElementsByTagName('*');
-        for (var i = 0; i < elements.length; i++) {
-            var element = elements[i];
-            for (var j = 0; j < element.childNodes.length; j++) {
-                var node = element.childNodes[j];
-                if (node.nodeType === 3) { // Node de tipo texto
-                    var text = node.nodeValue;
-                    var replacedText = text.replace(targetText, newText);
-                    if (replacedText !== text) {
-                        node.nodeValue = replacedText;
+            function replaceText(targetText, newText) {
+                var elements = document.getElementsByTagName('*');
+                for (var i = 0; i < elements.length; i++) {
+                    var element = elements[i];
+                    for (var j = 0; j < element.childNodes.length; j++) {
+                        var node = element.childNodes[j];
+                        if (node.nodeType === 3) { 
+                            var text = node.nodeValue;
+                            var replacedText = text.replace(targetText, newText);
+                            if (replacedText !== text) {
+                                node.nodeValue = replacedText;
+                            }
+                        }
                     }
                 }
             }
-        }
         
-        replaceText('Puntos', 'PT');
-        updateHeaders();
+            replaceText('Puntos', 'PT');
+            replaceText('Jugados', 'J');
+            replaceText('Ganados', 'G');
+            replaceText('Perdidos', 'P');
+            replaceText('Empates', 'E');
+            replaceText('Sanción puntos', 'SCP');
             
-        })();"""
+            replaceText('S.A.D. STELLA MARIS LA GAVIA', 'STELLA MARIS');
+            replaceText('A.D. NUEVA CASTILLA', 'NV. CASTILLA');
+            replaceText('CDE ACADEMIA FENIX', 'AC. FENIX');
+            replaceText('S.A.D. FUNDACION RAYO VALLECANO', 'RAYO VALL.');
+            replaceText('C.D. ESCUELA BREOGAN', 'ESC. BREOGAN');
+            replaceText('C.D. TAJAMAR', 'TAJAMAR');
+            replaceText('GREDOS SAN DIEGO-VALLECAS', 'GSD VALLECAS');
+            replaceText('C.D. SPORT VILLA DE VALLECAS', 'SPORT V.VALLECAS');
+            
+            //updateHeaders();
+            
+        })();
+        """
 
         webView.evaluateJavascript(jsScript, null)
     }

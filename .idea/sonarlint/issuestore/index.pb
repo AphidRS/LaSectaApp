@@ -15,3 +15,5 @@ A
 gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
 `
 0app/src/main/java/com/lasectaapp/MainActivity.kt,c\e\ce8ced642ba0b9709cce0c14d38f7034055ea68f
+@
+build.gradle.kts,d\b\dbcff70658daf80b53ce624f6adcaa529df5ed8d

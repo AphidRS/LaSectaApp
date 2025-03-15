@@ -70,6 +70,33 @@ class   FragmentGoleadores : Fragment(R.layout.fragment_goleadores) {
         elements.forEach(function(el) {
             el.style.top = '0px';
         });
+        
+        function replaceText(targetText, newText) {
+            var elements = document.getElementsByTagName('*');
+            for (var i = 0; i < elements.length; i++) {
+                var element = elements[i];
+                for (var j = 0; j < element.childNodes.length; j++) {
+                    var node = element.childNodes[j];
+                    if (node.nodeType === 3) { 
+                        var text = node.nodeValue;
+                        var replacedText = text.replace(targetText, newText);
+                        if (replacedText !== text) {
+                            node.nodeValue = replacedText;
+                        }
+                    }
+                }
+            }
+        }
+        
+        replaceText('S.A.D. STELLA MARIS LA GAVIA', 'STELLA MARIS');
+        replaceText('A.D. NUEVA CASTILLA', 'NV. CASTILLA');
+        replaceText('CDE ACADEMIA FENIX', 'AC. FENIX');
+        replaceText('S.A.D. FUNDACION RAYO VALLECANO', 'RAYO VALL.');
+        replaceText('C.D. ESCUELA BREOGAN', 'ESC. BREOGAN');
+        replaceText('C.D. TAJAMAR', 'TAJAMAR');
+        replaceText('GREDOS SAN DIEGO-VALLECAS', 'GSD VALLECAS');
+        replaceText('C.D. SPORT VILLA DE VALLECAS', 'SPORT V.VALLECAS');
+        
     })();
     """
         webView.evaluateJavascript(jsScript, null)

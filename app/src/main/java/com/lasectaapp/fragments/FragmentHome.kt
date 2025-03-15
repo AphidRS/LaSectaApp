@@ -8,6 +8,8 @@ import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.lasectaapp.R
 import com.lasectaapp.databinding.FragmentHomeBinding
 import okhttp3.Call
@@ -22,7 +24,7 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var webView: WebView
     private lateinit var progressBar: ProgressBar
-
+    private lateinit var currentRoundValue: String
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
@@ -50,7 +52,8 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 // Llama al método para inyectar el script de eliminación de contenido
-                injectRemoveContentScript()
+                getJornada()
+                injectRemoveContentScript(currentRoundValue)
                 progressBar.visibility = ProgressBar.GONE
             }
         }
@@ -99,21 +102,29 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
             override fun onFailure(call: Call, e: IOException) {
                 TODO("Not yet implemented")
             }
+
             override fun onResponse(call: Call, response: Response) {
-                /*
-                val htmlResponse = response.body?.string().get()
-                val gson = Gson()
-                val jsonObject = gson.fromJson(responseBody, JsonObject::class.java)
-                val currentRoundValue = jsonObject.get("currentRound")?.asString*/
+                response.body?.use { responseBody ->
+                    // Convert the response body to a string
+                    val body = responseBody.string()
+
+                    // Parse the string as JSON
+                    val gson = Gson()
+                    val jObject = gson.fromJson(body, JsonObject::class.java)
+
+                    // Access specific JSON properties if needed
+                    currentRoundValue = jObject.getAsJsonObject("props")?.getAsJsonObject("pageProps")?.get("currentRound")?.asString.toString()
+                }
             }
         })
-
     }
 
-    private fun injectRemoveContentScript() {
+    private fun injectRemoveContentScript(currentRoundValue: String) {
         val jsScript = """
     (function() {
        
+       //var currentRoundValue = "$currentRoundValue";
+        
         // Eliminar elementos con clase 'jss3'
         var elements = document.getElementsByClassName('jss3');
         while (elements.length > 0) {
@@ -160,8 +171,18 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
         if (footer) {
             footer.parentNode.removeChild(footer);
         }
+        
+        var spans = document.getElementsByTagName('span');
+        for (var i = 0; i < spans.length; i++) {
+            if (spans[i].innerText.includes('JORNADA ' + currentRoundValue)) {
+                spans[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+         
     })();
-"""
+    """
         webView.evaluateJavascript(jsScript, null)
     }
 }
+
