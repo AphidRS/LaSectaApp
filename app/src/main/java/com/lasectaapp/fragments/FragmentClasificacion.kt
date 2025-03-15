@@ -99,7 +99,8 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
             });
 
             // Eliminar otros elementos por su clase
-            var classesToRemove = ['jss10', 'jss11', 'rightSidebar', 'tickerHolder', 'filtro-busqueda', 'filterstyle', 'footer'];
+            //var classesToRemove = ['jss10', 'jss11', 'rightSidebar', 'tickerHolder', 'filtro-busqueda', 'filterstyle', 'footer'];
+            var classesToRemove = ['jss3', 'jss4', 'jss10', 'jss441', 'jss442', 'jss443', 'rightSidebar', 'tickerHolder', 'filtro-busqueda', 'filterstyle'];
             classesToRemove.forEach(function(className) {
                 var elements = document.getElementsByClassName(className);
                 while(elements.length > 0) {
@@ -110,6 +111,12 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
             // Ajustar padding de elementos con clase 'MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12'
             var element = document.querySelector('.MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12');
             if (element) { element.style.padding = '0px'; }
+            
+            // Ajustar la propiedad top en elementos con clase 'jss2'
+            var elements = document.querySelectorAll('.jss2');
+            elements.forEach(function(el) {
+            el.style.top = '0px';
+            });
 
             // Eliminar el footer
             var footer = document.querySelector('footer');
