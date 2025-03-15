@@ -52,8 +52,9 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 // Llama al método para inyectar el script de eliminación de contenido
-                getJornada()
-                injectRemoveContentScript(currentRoundValue)
+                //getJornada()
+                //injectRemoveContentScript(currentRoundValue)
+                injectRemoveContentScript("16")
                 progressBar.visibility = ProgressBar.GONE
             }
         }
@@ -97,7 +98,7 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
         val request = Request.Builder()
             .url("https://www.rffm.es/competicion/calendario?temporada=20&tipojuego=2&competicion=21433999&grupo=22203383")
             .build()
-
+        /*
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 TODO("Not yet implemented")
@@ -106,24 +107,24 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
             override fun onResponse(call: Call, response: Response) {
                 response.body?.use { responseBody ->
                     // Convert the response body to a string
-                    val body = responseBody.string()
+                    //val body = responseBody.string()
 
                     // Parse the string as JSON
-                    val gson = Gson()
-                    val jObject = gson.fromJson(body, JsonObject::class.java)
+                    //val gson = Gson()
+                    //val jObject = gson.fromJson(body, JsonObject::class.java)
 
                     // Access specific JSON properties if needed
-                    currentRoundValue = jObject.getAsJsonObject("props")?.getAsJsonObject("pageProps")?.get("currentRound")?.asString.toString()
+                    //currentRoundValue = jObject.getAsJsonObject("props")?.getAsJsonObject("pageProps")?.get("currentRound")?.asString.toString()
                 }
             }
-        })
+        })*/
     }
 
     private fun injectRemoveContentScript(currentRoundValue: String) {
         val jsScript = """
     (function() {
        
-       //var currentRoundValue = "$currentRoundValue";
+        var currentRoundValue = "$currentRoundValue";
         
         // Eliminar elementos con clase 'jss3'
         var elements = document.getElementsByClassName('jss3');
