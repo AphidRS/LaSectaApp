@@ -41,7 +41,7 @@ class   FragmentGoleadores : Fragment(R.layout.fragment_goleadores) {
     private fun injectRemoveContentScript() {
         val jsScript = """
     (function() {           
-        var classesToRemove = ['jss3', 'jss4', 'jss10', 'jss441', 'jss442', 'jss443', 'rightSidebar', 'tickerHolder'];
+        var classesToRemove = ['jss3', 'jss4', 'jss10', 'jss441', 'jss442', 'jss443', 'rightSidebar', 'tickerHolder', 'filtro-busqueda', 'filterstyle'];
         classesToRemove.forEach(function(className) {
             var elements = document.getElementsByClassName(className);
             while (elements.length > 0) {

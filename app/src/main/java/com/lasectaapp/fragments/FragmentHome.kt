@@ -51,9 +51,9 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                // Llama al método para inyectar el script de eliminación de contenido
+                // Llama al metodo para inyectar el script de eliminación de contenido
                 getJornada()
-                injectRemoveContentScript(currentRoundValue)
+                //injectRemoveContentScript(currentRoundValue)
                 progressBar.visibility = ProgressBar.GONE
             }
         }
@@ -105,15 +105,18 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
 
             override fun onResponse(call: Call, response: Response) {
                 response.body?.use { responseBody ->
-                    // Convert the response body to a string
                     val body = responseBody.string()
+                    val regex = Regex("\"currentRound\":\"(\\d+)\"")
+                    val matchResult = regex.find(body)
 
-                    // Parse the string as JSON
-                    val gson = Gson()
-                    val jObject = gson.fromJson(body, JsonObject::class.java)
-
-                    // Access specific JSON properties if needed
-                    currentRoundValue = jObject.getAsJsonObject("props")?.getAsJsonObject("pageProps")?.get("currentRound")?.asString.toString()
+                    activity?.runOnUiThread {
+                        if (matchResult != null) {
+                            currentRoundValue = matchResult.groupValues[1]
+                        } else {
+                            currentRoundValue = "15"
+                        }
+                        injectRemoveContentScript(currentRoundValue)
+                    }
                 }
             }
         })
@@ -123,7 +126,7 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
         val jsScript = """
     (function() {
        
-       //var currentRoundValue = "$currentRoundValue";
+        var currentRoundValue = "$currentRoundValue";
         
         // Eliminar elementos con clase 'jss3'
         var elements = document.getElementsByClassName('jss3');

@@ -83,7 +83,8 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
 
     private fun injectRemoveContentScript() {
         val jsScript = """
-        (function() {
+        (function() 
+        {
 
             // Eliminar elementos con la clase 'jss3'
             var elements = document.getElementsByClassName('jss3');
@@ -98,7 +99,8 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
             });
 
             // Eliminar otros elementos por su clase
-            var classesToRemove = ['jss10', 'jss11', 'rightSidebar', 'tickerHolder', 'filtro-busqueda', 'filterstyle', 'footer'];
+            //var classesToRemove = ['jss10', 'jss11', 'rightSidebar', 'tickerHolder', 'filtro-busqueda', 'filterstyle', 'footer'];
+            var classesToRemove = ['jss3', 'jss4', 'jss10', 'jss441', 'jss442', 'jss443', 'rightSidebar', 'tickerHolder', 'filtro-busqueda', 'filterstyle'];
             classesToRemove.forEach(function(className) {
                 var elements = document.getElementsByClassName(className);
                 while(elements.length > 0) {
@@ -109,6 +111,12 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
             // Ajustar padding de elementos con clase 'MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12'
             var element = document.querySelector('.MuiGrid-root.jss16.MuiGrid-item.MuiGrid-grid-xs-12');
             if (element) { element.style.padding = '0px'; }
+            
+            // Ajustar la propiedad top en elementos con clase 'jss2'
+            var elements = document.querySelectorAll('.jss2');
+            elements.forEach(function(el) {
+            el.style.top = '0px';
+            });
 
             // Eliminar el footer
             var footer = document.querySelector('footer');
@@ -127,55 +135,6 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
             elements.forEach(function(el) {
                 el.style.fontSize = '10px';
             });
-            
-            function updateHeaders() {
-                // Reemplazar las cabeceras de la clasificación
-                var classesToRemove = ['MuiBox-root jss73', 'MuiBox-root jss74', 'MuiBox-root jss75', 'MuiBox-root jss76', 'MuiBox-root jss77', 'MuiBox-root jss80'];
-    
-                classesToRemove.forEach(function(className) {
-                    var element;
-                    switch (className) {
-                        case 'MuiBox-root jss73':
-                            element = document.querySelector('.MuiBox-root.jss73');
-                            if (element) {
-                                element.textContent = 'PT';
-                            }
-                            break;
-                        case 'MuiBox-root jss74':
-                            element = document.querySelector('.MuiBox-root.jss74');
-                            if (element) {
-                                element.innerHTML = 'J';
-                            }
-                            break;
-                        case 'MuiBox-root jss75':
-                            element = document.querySelector('.MuiBox-root.jss75');
-                            if (element) {
-                                element.innerHTML = 'G';
-                            }
-                            break;
-                        case 'MuiBox-root jss76':
-                            element = document.querySelector('.MuiBox-root.jss76');
-                            if (element) {
-                                element.innerHTML = 'E';
-                            }
-                            break;
-                        case 'MuiBox-root jss77':
-                            element = document.querySelector('.MuiBox-root.jss77');
-                            if (element) {
-                                element.innerHTML = 'P';
-                            }
-                            break;
-                        case 'MuiBox-root jss80':
-                            element = document.querySelector('.MuiBox-root.jss80');
-                            if (element) {
-                                element.innerHTML = 'SC';
-                            }
-                            break;
-                        default:
-                            // Caso predeterminado, si es necesario
-                    }
-                });
-            }
         
             function replaceText(targetText, newText) {
                 var elements = document.getElementsByTagName('*');
@@ -210,11 +169,8 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
             replaceText('GREDOS SAN DIEGO-VALLECAS', 'GSD VALLECAS');
             replaceText('C.D. SPORT VILLA DE VALLECAS', 'SPORT V.VALLECAS');
             
-            //updateHeaders();
-            
         })();
         """
-
         webView.evaluateJavascript(jsScript, null)
     }
 }
