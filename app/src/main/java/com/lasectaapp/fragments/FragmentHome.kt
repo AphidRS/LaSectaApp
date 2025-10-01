@@ -40,7 +40,7 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
                     if (webView.canGoBack()) {
                         // Si el WebView tiene historial, ir hacia atrás en el historial
                         progressBar.visibility = ProgressBar.VISIBLE
-                        webView.loadUrl("https://www.rffm.es/competicion/calendario?temporada=20&tipojuego=2&competicion=21433999&grupo=22203383")
+                        webView.loadUrl("https://www.rffm.es/competicion/calendario?temporada=21&competicion=24037796&grupo=24037828&jornada=1&tipojuego=2")
                     } else {
                         // Si no puede ir hacia atrás, cerrar la actividad
                         this@FragmentHome.activity!!.finish()
@@ -82,7 +82,7 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
         webView.webViewClient = WebViewClient()
         webView.settings.javaScriptEnabled = true
         progressBar.visibility = ProgressBar.VISIBLE
-        webView.loadUrl("https://www.rffm.es/competicion/calendario?temporada=20&tipojuego=2&competicion=21433999&grupo=22203383")
+        webView.loadUrl("https://www.rffm.es/competicion/calendario?temporada=21&competicion=24037796&grupo=24037828&jornada=1&tipojuego=2")
         webView.settings.apply {
             loadWithOverviewMode = true
             useWideViewPort = true
@@ -95,7 +95,7 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
     private fun getJornada(){
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("https://www.rffm.es/competicion/calendario?temporada=20&tipojuego=2&competicion=21433999&grupo=22203383")
+            .url("https://www.rffm.es/competicion/calendario?temporada=21&competicion=24037796&grupo=24037828&jornada=1&tipojuego=2")
             .build()
 
         client.newCall(request).enqueue(object : Callback {

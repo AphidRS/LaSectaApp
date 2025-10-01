@@ -27,7 +27,7 @@ class   FragmentGoleadores : Fragment(R.layout.fragment_goleadores) {
         webView = binding.webWindow
         webView.settings.javaScriptEnabled = true
         progressBar.visibility = ProgressBar.VISIBLE
-        webView.loadUrl("https://www.rffm.es/competicion/goleadores?temporada=20&tipojuego=2&competicion=21433999&grupo=22203383")
+        webView.loadUrl("https://www.rffm.es/competicion/goleadores?temporada=21&competicion=24037796&grupo=24037828&jornada=1&tipojuego=2")
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)

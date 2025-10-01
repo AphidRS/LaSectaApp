@@ -32,7 +32,7 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
                     if (webView.canGoBack()) {
                         // Si el WebView tiene historial, ir hacia atrás en el historial
                         progressBar.visibility = ProgressBar.VISIBLE
-                        webView.loadUrl("https://www.rffm.es/competicion/clasificaciones?temporada=20&tipojuego=2&competicion=21433999&grupo=22203383&jornada=2")
+                        webView.loadUrl("https://www.rffm.es/competicion/clasificaciones?temporada=21&competicion=24037796&grupo=24037828&jornada=1&tipojuego=2&jornada=1")
                     } else {
                         // Si no puede ir hacia atrás, cerrar la actividad
                         this@FragmentClasificacion.activity!!.finish()
@@ -71,7 +71,7 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
         webView = binding.webWindow
         webView.settings.javaScriptEnabled = true
         progressBar.visibility = ProgressBar.VISIBLE
-        webView.loadUrl("https://www.rffm.es/competicion/clasificaciones?temporada=20&tipojuego=2&competicion=21433999&grupo=22203383")
+        webView.loadUrl("https://www.rffm.es/competicion/clasificaciones?temporada=21&competicion=24037796&grupo=24037828&jornada=1&tipojuego=2&jornada=1")
         webView.settings.apply {
             loadWithOverviewMode = true
             useWideViewPort = true

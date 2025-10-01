@@ -54,7 +54,7 @@ class FragmentPortal : Fragment(R.layout.fragment_portal) {
             }
         }
 
-        webView.loadUrl("https://federado.ffmadrid.es/fnfg/")
+        webView.loadUrl("https://www.rffm.es/portal-federado")
     }
 
     private fun injectRemoveContentScript() {
