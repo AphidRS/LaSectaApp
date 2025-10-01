@@ -8,8 +8,6 @@ import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import com.google.gson.Gson
-import com.google.gson.JsonObject
 import com.lasectaapp.R
 import com.lasectaapp.databinding.FragmentHomeBinding
 import okhttp3.Call
@@ -113,7 +111,7 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
                         if (matchResult != null) {
                             currentRoundValue = matchResult.groupValues[1]
                         } else {
-                            currentRoundValue = "15"
+                            currentRoundValue = "1"
                         }
                         injectRemoveContentScript(currentRoundValue)
                     }
