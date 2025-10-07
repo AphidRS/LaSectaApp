@@ -9,6 +9,7 @@ import android.widget.ProgressBar
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.lasectaapp.R
+import com.lasectaapp.URLManager
 import com.lasectaapp.databinding.FragmentClasificacionBinding
 
 class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
@@ -32,7 +33,7 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
                     if (webView.canGoBack()) {
                         // Si el WebView tiene historial, ir hacia atrás en el historial
                         progressBar.visibility = ProgressBar.VISIBLE
-                        webView.loadUrl("https://www.rffm.es/competicion/clasificaciones?temporada=21&competicion=24037796&grupo=24037828&jornada=1&tipojuego=2&jornada=1")
+                        webView.loadUrl(URLManager.currentCategory.clasificacionUrl)
                     } else {
                         // Si no puede ir hacia atrás, cerrar la actividad
                         this@FragmentClasificacion.activity!!.finish()
@@ -71,7 +72,7 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
         webView = binding.webWindow
         webView.settings.javaScriptEnabled = true
         progressBar.visibility = ProgressBar.VISIBLE
-        webView.loadUrl("https://www.rffm.es/competicion/clasificaciones?temporada=21&competicion=24037796&grupo=24037828&jornada=1&tipojuego=2&jornada=1")
+        webView.loadUrl(URLManager.currentCategory.clasificacionUrl)
         webView.settings.apply {
             loadWithOverviewMode = true
             useWideViewPort = true

@@ -16,6 +16,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
+import com.lasectaapp.URLManager
 
 
 class FragmentHome : Fragment(R.layout.fragment_home) {
@@ -23,6 +24,7 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
     private lateinit var webView: WebView
     private lateinit var progressBar: ProgressBar
     private lateinit var currentRoundValue: String
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
@@ -38,8 +40,8 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
                     if (webView.canGoBack()) {
                         // Si el WebView tiene historial, ir hacia atrás en el historial
                         progressBar.visibility = ProgressBar.VISIBLE
-                        webView.loadUrl("https://www.rffm.es/competicion/calendario?temporada=21&competicion=24037796&grupo=24037828&jornada=1&tipojuego=2")
-                    } else {
+                        // CAMBIO: Usar la URL dinámica también aquí si es necesario, o mantener la principal.
+                        webView.loadUrl(URLManager.currentCategory.calendarioUrl)                    } else {
                         // Si no puede ir hacia atrás, cerrar la actividad
                         this@FragmentHome.activity!!.finish()
                     }
@@ -55,24 +57,21 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
                 progressBar.visibility = ProgressBar.GONE
             }
         }
-
     }
 
     override fun onResume() {
         super.onResume()
-        // Forzar orientación de la actividad a landscape cuando el fragmento está visible
-        //activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        // ... (código sin cambios)
     }
 
     override fun onPause() {
         super.onPause()
-        // Cambiar la orientación a portrait antes de salir
-        //activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        // ... (código sin cambios)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        webView.destroy() // Limpiar el WebView si es necesario para liberar recursos
+        webView.destroy()
     }
 
     private fun setWebView() {
@@ -80,7 +79,8 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
         webView.webViewClient = WebViewClient()
         webView.settings.javaScriptEnabled = true
         progressBar.visibility = ProgressBar.VISIBLE
-        webView.loadUrl("https://www.rffm.es/competicion/calendario?temporada=21&competicion=24037796&grupo=24037828&jornada=1&tipojuego=2")
+        val finalUrl = URLManager.currentCategory.calendarioUrl
+        webView.loadUrl(finalUrl)
         webView.settings.apply {
             loadWithOverviewMode = true
             useWideViewPort = true
@@ -92,13 +92,16 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
 
     private fun getJornada(){
         val client = OkHttpClient()
+        val finalUrl = URLManager.currentCategory.calendarioUrl
         val request = Request.Builder()
-            .url("https://www.rffm.es/competicion/calendario?temporada=21&competicion=24037796&grupo=24037828&jornada=1&tipojuego=2")
+            .url(finalUrl)
             .build()
-
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                TODO("Not yet implemented")
+                // Es buena práctica manejar el error, por ejemplo, mostrando un Toast.
+                activity?.runOnUiThread {
+                    progressBar.visibility = ProgressBar.GONE
+                }
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -175,15 +178,14 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
         
         var spans = document.getElementsByTagName('span');
         for (var i = 0; i < spans.length; i++) {
-            if (spans[i].innerText.includes('JORNADA ' + currentRoundValue)) {
-                spans[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+        if (spans[i].innerText.trim() === 'JORNADA ' + "$currentRoundValue") {
+            spans[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            break;
         }
-
+    }
          
     })();
     """
         webView.evaluateJavascript(jsScript, null)
     }
 }
-

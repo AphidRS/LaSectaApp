@@ -8,11 +8,19 @@ import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import com.lasectaapp.R
+import com.lasectaapp.URLManager
 import com.lasectaapp.databinding.FragmentGoleadoresBinding
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.OkHttpClient
+import okhttp3.Response
+import java.io.IOException
+import okhttp3.Request
 
 class   FragmentGoleadores : Fragment(R.layout.fragment_goleadores) {
     private lateinit var binding : FragmentGoleadoresBinding
     private lateinit var webView : WebView
+    private lateinit var currentRoundValue: String
     private lateinit var progressBar: ProgressBar
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -20,25 +28,67 @@ class   FragmentGoleadores : Fragment(R.layout.fragment_goleadores) {
         activity?.title = "GOLEADORES"
         progressBar = view.findViewById<View>(R.id.progressBar) as ProgressBar
         setWebView()
-    }
 
-    @SuppressLint("SetJavaScriptEnabled")
-    private fun setWebView(){
-        webView = binding.webWindow
-        webView.settings.javaScriptEnabled = true
-        progressBar.visibility = ProgressBar.VISIBLE
-        webView.loadUrl("https://www.rffm.es/competicion/goleadores?temporada=21&competicion=24037796&grupo=24037828&jornada=1&tipojuego=2")
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                // Llama al método para inyectar el script de eliminación de contenido
-                injectRemoveContentScript()
-                progressBar.visibility = ProgressBar.GONE
+                getJornada()
             }
         }
     }
 
-    private fun injectRemoveContentScript() {
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun setWebView() {
+        webView = binding.webWindow
+        webView.settings.javaScriptEnabled = true
+        progressBar.visibility = ProgressBar.VISIBLE
+        webView.loadUrl(URLManager.currentCategory.goleadoresUrl)
+        webView.settings.apply {
+            loadWithOverviewMode = true
+            useWideViewPort = true
+            setSupportZoom(true)
+            builtInZoomControls = true
+            displayZoomControls = false
+        }
+    }
+
+    private fun getJornada() {
+        val client = OkHttpClient()
+        val urlCalendario = URLManager.currentCategory.calendarioUrl
+        val request = Request.Builder()
+            .url(urlCalendario)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                activity?.runOnUiThread {
+                    progressBar.visibility = ProgressBar.GONE
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    response.body?.use { responseBody ->
+                        val body = responseBody.string()
+                        val regex = Regex("\"currentRound\":\"(\\d+)\"")
+                        val matchResult = regex.find(body)
+                        activity?.runOnUiThread {
+                            currentRoundValue = matchResult?.groupValues?.get(1) ?: "1"
+                            // CAMBIO 5: Llama al método correcto con el parámetro.
+                            injectRemoveContentScript(currentRoundValue)
+                            progressBar.visibility = ProgressBar.GONE
+                        }
+                    }
+                } else {
+                    activity?.runOnUiThread {
+                        progressBar.visibility = ProgressBar.GONE
+                    }
+                }
+            }
+        })
+    }
+
+    private fun injectRemoveContentScript(currentRoundValue: String) {
         val jsScript = """
     (function() {           
         var classesToRemove = ['jss3', 'jss4', 'jss10', 'jss441', 'jss442', 'jss443', 'rightSidebar', 'tickerHolder', 'filtro-busqueda', 'filterstyle'];
