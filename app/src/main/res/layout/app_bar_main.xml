@@ -6,30 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- 1. Barra de la aplicación que contiene la Toolbar -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.LaSectaApp.AppBarOverlay"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
-        <FrameLayout
+        <!-- 2. La Toolbar en sí misma -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
-                app:titleTextColor="@color/black"
-                app:popupTheme="@style/Theme.LaSectaApp.NoActionBar" />
-
-        </FrameLayout>
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:titleTextColor="@color/white">
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_main"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />/>
+    <!-- 4. El contenido principal (Fragments). Se le asigna el comportamiento de scroll -->
+    <include
+        layout="@layout/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

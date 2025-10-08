@@ -12,9 +12,10 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 2
-        versionName = "0.9a.08102025"
+        versionName = "0.9e.08102025"
         resValue ("string", "app_version_name", "\"${versionName}\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "GEMINI_API_KEY", "\"AIzaSyCSK5vhADbKOt7ihm8tjaRMAKJSlAHZoas\"")
     }
 
     buildTypes {
@@ -35,6 +36,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig =  true
     }
     buildToolsVersion = "34.0.0"
 }
@@ -52,6 +54,8 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.9.3")
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

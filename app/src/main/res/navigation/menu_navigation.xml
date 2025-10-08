@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/fragmentPortal"
-        android:name="com.lasectaapp.fragments.FragmentPortal"
+        android:name="com.lasectaapp.fragments.FragmentGemini"
         android:label="P. del Federado" />
 
 </navigation>

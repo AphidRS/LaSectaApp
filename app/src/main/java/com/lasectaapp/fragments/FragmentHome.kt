@@ -148,9 +148,21 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
         });
         
         // Eliminar elementos con múltiples clases 'jss10' y 'jss13' y ajustar altura
-        elements = document.querySelectorAll('.jss10.jss13');
+        elements = document.querySelectorAll('.jss10.jss13.jss15');
         elements.forEach(function(el) {
             el.style.height = '0';
+            el.parentNode.removeChild(el);
+        });
+        
+        // Eliminar elementos con múltiples clases 'jss10' y 'jss68'
+        elements = document.querySelectorAll('.jss10.jss68.jss12');
+        elements.forEach(function(el) {
+            el.parentNode.removeChild(el);
+        });
+        
+        // Eliminar elementos con múltiples clases 'MuiGrid-root jss16 staticContent MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8
+        elements = document.querySelectorAll('.MuiGrid-root.jss16.staticContent.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-md-8');
+        elements.forEach(function(el) {
             el.parentNode.removeChild(el);
         });
         
@@ -168,6 +180,12 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
         elements = document.getElementsByClassName('jss2');
         for (var i = 0; i < elements.length; i++) {
             elements[i].style.top = '0px';
+        }
+        
+        // Eliminar el filterstyle si existe
+        var element = document.querySelector('filterstyle');
+        if (element) {
+            element.parentNode.removeChild(element);
         }
         
         // Eliminar el footer si existe
