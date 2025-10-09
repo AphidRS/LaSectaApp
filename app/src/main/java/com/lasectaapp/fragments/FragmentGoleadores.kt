@@ -10,17 +10,10 @@ import androidx.fragment.app.Fragment
 import com.lasectaapp.R
 import com.lasectaapp.URLManager
 import com.lasectaapp.databinding.FragmentGoleadoresBinding
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Response
-import java.io.IOException
-import okhttp3.Request
 
 class   FragmentGoleadores : Fragment(R.layout.fragment_goleadores) {
     private lateinit var binding : FragmentGoleadoresBinding
     private lateinit var webView : WebView
-    private lateinit var currentRoundValue: String
     private lateinit var progressBar: ProgressBar
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,8 +24,8 @@ class   FragmentGoleadores : Fragment(R.layout.fragment_goleadores) {
 
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
+                injectRemoveContentScript()
                 super.onPageFinished(view, url)
-                getJornada()
             }
         }
     }
@@ -52,43 +45,7 @@ class   FragmentGoleadores : Fragment(R.layout.fragment_goleadores) {
         }
     }
 
-    private fun getJornada() {
-        val client = OkHttpClient()
-        val urlCalendario = URLManager.currentCategory.calendarioUrl
-        val request = Request.Builder()
-            .url(urlCalendario)
-            .build()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                activity?.runOnUiThread {
-                    progressBar.visibility = ProgressBar.GONE
-                }
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                if (response.isSuccessful) {
-                    response.body?.use { responseBody ->
-                        val body = responseBody.string()
-                        val regex = Regex("\"currentRound\":\"(\\d+)\"")
-                        val matchResult = regex.find(body)
-                        activity?.runOnUiThread {
-                            currentRoundValue = matchResult?.groupValues?.get(1) ?: "1"
-                            // CAMBIO 5: Llama al método correcto con el parámetro.
-                            injectRemoveContentScript(currentRoundValue)
-                            progressBar.visibility = ProgressBar.GONE
-                        }
-                    }
-                } else {
-                    activity?.runOnUiThread {
-                        progressBar.visibility = ProgressBar.GONE
-                    }
-                }
-            }
-        })
-    }
-
-    private fun injectRemoveContentScript(currentRoundValue: String) {
+    private fun injectRemoveContentScript() {
         val jsScript = """
     (function() {           
         var classesToRemove = ['jss3', 'jss4', 'jss10', 'jss441', 'jss442', 'jss443', 'rightSidebar', 'tickerHolder', 'filtro-busqueda', 'filterstyle'];

@@ -44,7 +44,6 @@ class FragmentClasificacion : Fragment(R.layout.fragment_clasificacion) {
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                // Llama al método para inyectar el script de eliminación de contenido
                 injectRemoveContentScript()
                 progressBar.visibility = ProgressBar.GONE
             }
