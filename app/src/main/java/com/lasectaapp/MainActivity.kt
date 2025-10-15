@@ -2,6 +2,7 @@ package com.lasectaapp
 
 import android.content.Context
 import android.os.Bundle
+import android.provider.Settings.Global.putString
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -14,8 +15,13 @@ import com.google.gson.Gson
 import com.lasectaapp.databinding.ActivityMainBinding
 import com.lasectaapp.fragments.FragmentClasificacion
 import com.lasectaapp.fragments.FragmentGoleadores
-import com.lasectaapp.fragments.FragmentHome
 import com.lasectaapp.fragments.FragmentGemini
+import com.lasectaapp.fragments.FragmentHome
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.decodeFromString
+import androidx.core.content.edit
+
 class MainActivity : AppCompatActivity() {
 
     private var isInitialSpinnerSelection = true
@@ -151,20 +157,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun saveSelectedCategory(category: CategoryURLs) {
         val sharedPref = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE) ?: return
-        val json = Gson().toJson(category)
-        with(sharedPref.edit()) {
-            putString("SELECTED_CATEGORY", json)
-            apply()
+        val jsonString = Json.encodeToString(category)
+        sharedPref.edit {
+            putString("SELECTED_CATEGORY", jsonString)
         }
     }
 
     private fun loadSelectedUrl() {
         val sharedPref = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
-        val json = sharedPref.getString("SELECTED_CATEGORY", null)
+        val jsonString = sharedPref.getString("SELECTED_CATEGORY", null)
 
-        if (json != null) {
+        if (jsonString != null) {
             // Si hay algo guardado, lo cargamos
-            URLManager.currentCategory = Gson().fromJson(json, CategoryURLs::class.java)
+            URLManager.currentCategory = Json.decodeFromString<CategoryURLs>(jsonString)
         } else {
             // SI NO HAY NADA GUARDADO (primer arranque):
             // Asignamos la primera categoría de la lista como valor por defecto.

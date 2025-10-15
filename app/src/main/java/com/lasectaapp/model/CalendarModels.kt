@@ -1,6 +1,9 @@
 package com.lasectaapp.model
 
-import com.google.gson.annotations.SerializedName
+
+import android.annotation.SuppressLint
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Representa un único partido dentro de una jornada.
@@ -9,41 +12,34 @@ import com.google.gson.annotations.SerializedName
  * La anotación @SerializedName le dice a la librería GSON cómo mapear cada campo.
  * Por ejemplo, el campo "equipo_local" del JSON se guardará en la variable "nombreEquipoLocal".
  */
+@SuppressLint("UnsafeOptInUsageError")
+@Serializable
 data class Match(
-    @SerializedName("codacta")
-    val codActa: String,
-
-    @SerializedName("codigo_equipo_local")
-    val codigoEquipoLocal: String,
-
-    @SerializedName("escudo_equipo_local")
-    val escudoEquipoLocal: String,
-
-    @SerializedName("equipo_local")
-    val nombreEquipoLocal: String,
-
-    @SerializedName("goles_casa")
-    val golesCasa: String?, // Puede ser nulo si el partido no se ha jugado
-
-    @SerializedName("codigo_equipo_visitante")
-    val codigoEquipoVisitante: String,
-
-    @SerializedName("escudo_equipo_visitante")
-    val escudoEquipoVisitante: String,
-
-    @SerializedName("equipo_visitante")
-    val nombreEquipoVisitante: String,
-
-    @SerializedName("goles_visitante")
-    val golesVisitante: String?, // Puede ser nulo si el partido no se ha jugado
-
-    @SerializedName("campo")
+    @SerialName("codacta")
+    val codacta: String,
+    @SerialName("codigo_equipo_local")
+    val codigo_equipo_local: String,
+    @SerialName("escudo_equipo_local")
+    val escudo_equipo_local: String,
+    @SerialName("equipo_local")
+    val equipo_local: String,
+    @SerialName("goles_casa")
+    val goles_casa: String,
+    @SerialName("codigo_equipo_visitante")
+    val codigo_equipo_visitante: String,
+    @SerialName("escudo_equipo_visitante")
+    val escudo_equipo_visitante: String,
+    @SerialName("equipo_visitante")
+    val equipo_visitante: String,
+    @SerialName("goles_visitante")
+    val goles_visitante: String,
+    @SerialName("codigo_campo")
+    val codigo_campo: String,
+    @SerialName("campo")
     val campo: String,
-
-    @SerializedName("fecha")
+    @SerialName("fecha")
     val fecha: String,
-
-    @SerializedName("hora")
+    @SerialName("hora")
     val hora: String
 )
 
@@ -51,14 +47,19 @@ data class Match(
  * Representa una jornada completa, que se identifica por su número
  * y contiene una lista de todos los partidos (`Match`) de esa jornada.
  */
-
+@SuppressLint("UnsafeOptInUsageError")
+@Serializable
 data class Round(
-    @SerializedName("codjornada")
+    @SerialName("codjornada")
     val codJornada: String,
 
-    @SerializedName("jornada")
-    val jornada: String,
+    @SerialName("jornada")
+    val jornada: Int,
 
-    @SerializedName("equipos") // En el JSON, la lista de partidos se llama "equipos"
-    val partidos: List<Match>
+    @SerialName("equipos") // Le dice al parser que busque "equipos" en el JSON
+    val partidos: List<Match>,
+
+    @Transient // Esta anotación evita que el parser intente leerla del JSON
+    val rawJsonForDebug: String? = ""
+
 )

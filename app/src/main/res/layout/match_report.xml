@@ -1,0 +1,97 @@
+<!-- res/layout/fragment_match_details.xml -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.MatchDetailsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Cabecera: Jornada, Fecha -->
+        <TextView
+            android:id="@+id/tv_match_header_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEMPORADA 2025-2026 - GRUPO 3 - JORNADA 1"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Resultado y Equipos -->
+        <TextView
+            android:id="@+id/tv_details_local_team"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="C.D.E. CIUDAD DE PINTO 'A'"
+            app:layout_constraintTop_toBottomOf="@id/tv_match_header_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_details_result"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:id="@+id/tv_details_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 - 1"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@id/tv_details_local_team"
+            app:layout_constraintBottom_toBottomOf="@id/tv_details_local_team"
+            app:layout_constraintStart_toEndOf="@id/tv_details_local_team"
+            app:layout_constraintEnd_toStartOf="@id/tv_details_visitor_team"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
+
+        <TextView
+            android:id="@+id/tv_details_visitor_team"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ESCUELA DE FUTBOL ARGANDA 'A'"
+            app:layout_constraintTop_toTopOf="@id/tv_details_local_team"
+            app:layout_constraintBottom_toBottomOf="@id/tv_details_local_team"
+            app:layout_constraintStart_toEndOf="@id/tv_details_result"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Titulares (aquí irían RecyclerViews anidados) -->
+        <TextView
+            android:id="@+id/tv_titulares_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TITULARES"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_details_local_team"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Goles -->
+        <TextView
+            android:id="@+id/tv_goles_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GOLES"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_titulares_title"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <!-- Árbitros -->
+        <TextView
+            android:id="@+id/tv_arbitros_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ÁRBITROS"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_goles_title"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
