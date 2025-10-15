@@ -9,5 +9,10 @@ object URLManager {
         clasificacionUrl = "https://www.rffm.es/competicion/clasificacion?idcompeticion=27814&idgrupo=29124",
         goleadoresUrl = "https://www.rffm.es/competicion/goleadores?idcompeticion=27814&idgrupo=29124"
     )
+    // A partir de la categoría actual, podemos exponer las URLs individuales
+    fun getCalendarUrl(): String = currentCategory.calendarioUrl
+    fun getClassificationUrl(): String = currentCategory.clasificacionUrl
+    fun getScorersUrl(): String = currentCategory.goleadoresUrl
+
 }
     

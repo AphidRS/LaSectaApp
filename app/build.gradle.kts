@@ -22,7 +22,7 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 2
-        versionName = "0.9e.08102025"
+        versionName = "0.9f.16102025"
         resValue ("string", "app_version_name", "\"${versionName}\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         val geminiApiKey = localProperties.getProperty("GEMINI_API_KEY") ?: ""
