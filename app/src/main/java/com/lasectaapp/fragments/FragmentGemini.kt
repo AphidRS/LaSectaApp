@@ -16,7 +16,7 @@ import com.lasectaapp.R
 import com.lasectaapp.URLManager
 import kotlinx.coroutines.launch
 
-class FragmentGemini : Fragment(R.layout.fragment_gemini) { // <- Usamos el constructor que infla el layout
+class FragmentGemini : Fragment(R.layout.fragment_gemini) {
 
     private val PREF_LAST_QUESTION = "last_gemini_question"
     private val PREF_LAST_ANSWER = "last_gemini_answer"

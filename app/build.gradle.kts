@@ -4,6 +4,8 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.parcelize")
+    id("androidx.navigation.safeargs.kotlin")
     kotlin("plugin.serialization")
 }
 
@@ -22,7 +24,7 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 2
-        versionName = "0.9f.16102025"
+        versionName = "0.95.05112025"
         resValue ("string", "app_version_name", "\"${versionName}\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         val geminiApiKey = localProperties.getProperty("GEMINI_API_KEY") ?: ""
@@ -70,6 +72,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("io.coil-kt:coil:2.6.0")
+    implementation("io.coil-kt:coil-gif:2.6.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

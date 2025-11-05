@@ -12,7 +12,7 @@
         android:layout_gravity="fill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/la_secta_logo">
+        android:background="@drawable/baseline_sports_soccer_24">
 
     </FrameLayout>
 

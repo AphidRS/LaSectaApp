@@ -1,4 +1,4 @@
-package com.lasectaapp.ui.adapter // Paquete corregido
+package com.lasectaapp.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,19 +6,22 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import coil.load // Importamos la función 'load' de Coil
+import coil.load
 import com.lasectaapp.R
 import com.lasectaapp.model.Match
 
-class MatchesAdapter(private val matches: List<Match>) : RecyclerView.Adapter<MatchesAdapter.MatchViewHolder>() {
+class MatchesAdapter (
+    private val matches: List<Match>,
+    private val listener: OnMatchClickListener
+) : RecyclerView.Adapter<MatchesAdapter.MatchViewHolder>() {
 
-    // El ViewHolder contiene las referencias a las vistas dentro de item_match.xml
     class MatchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val localShield: ImageView = view.findViewById(R.id.iv_local_shield)
         val localTeamName: TextView = view.findViewById(R.id.tv_local_team)
-        val result: TextView = view.findViewById(R.id.tv_result)
+        val result: TextView = view.findViewById(R.id.tv_score)
         val visitorTeamName: TextView = view.findViewById(R.id.tv_visitor_team)
         val visitorShield: ImageView = view.findViewById(R.id.iv_visitor_shield)
+        val viewMatchReport: TextView = view.findViewById(R.id.tv_view_match_report)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder {
@@ -35,27 +38,34 @@ class MatchesAdapter(private val matches: List<Match>) : RecyclerView.Adapter<Ma
         holder.localTeamName.text = match.equipo_local
         holder.visitorTeamName.text = match.equipo_visitante
 
-        // Lógica para mostrar el resultado
         if (match.goles_casa.isNullOrEmpty() || match.goles_visitante.isNullOrEmpty()) {
-            holder.result.text = "VER ACTA" // O podrías usar un string resource
+
+            holder.result.visibility = View.GONE
+            holder.viewMatchReport.visibility = View.VISIBLE
         } else {
+            holder.result.visibility = View.VISIBLE
             holder.result.text = "${match.goles_casa} - ${match.goles_visitante}"
+            holder.viewMatchReport.visibility = View.VISIBLE
         }
 
-        // --- Carga de imágenes con Coil ---
-        // URL base del servidor de imágenes
+        holder.viewMatchReport.setOnClickListener {
+            listener.onActaClick(match)
+        }
+
         val baseImageUrl = "https://appweb.rffm.es"
-
-        // Cargamos el escudo del equipo local
         holder.localShield.load(baseImageUrl + match.escudo_equipo_local) {
-            placeholder(R.drawable.ic_launcher_background) // Imagen de carga
-            error(R.drawable.ic_launcher_background)       // Imagen si falla la carga
+            placeholder(R.drawable.ic_launcher_background)
+            error(R.drawable.ic_launcher_background)
         }
 
-        // Cargamos el escudo del equipo visitante
         holder.visitorShield.load(baseImageUrl + match.escudo_equipo_visitante) {
-            placeholder(R.drawable.ic_launcher_background) // Imagen de carga
-            error(R.drawable.ic_launcher_background)       // Imagen si falla la carga
+            placeholder(R.drawable.ic_launcher_background)
+            error(R.drawable.ic_launcher_background)
         }
     }
+}
+
+
+interface OnMatchClickListener {
+    fun onActaClick(match: Match)
 }

@@ -1,72 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/bottom_nav_color_selector"
+    app:strokeWidth="1dp"
+    app:cardCornerRadius="4dp">
 
-    <!-- Escudo Local -->
-    <ImageView
-        android:id="@+id/iv_local_shield"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:src="@tools:sample/avatars" />
-
-    <!-- Nombre Equipo Local -->
-    <TextView
-        android:id="@+id/tv_local_team"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:gravity="start"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@id/iv_local_shield"
-        app:layout_constraintEnd_toStartOf="@id/tv_result"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="ATLETICO CHOPERA ALCOBENDAS 04 'D'" />
+        android:padding="8dp">
 
-    <!-- Resultado o "Ver Acta" -->
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/holo_red_dark"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="VER ACTA" />
+        <!-- Escudo Local -->
+        <ImageView
+            android:id="@+id/iv_local_shield"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@tools:sample/avatars" />
 
-    <!-- Nombre Equipo Visitante -->
-    <TextView
-        android:id="@+id/tv_visitor_team"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:gravity="end"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@id/tv_result"
-        app:layout_constraintEnd_toStartOf="@id/iv_visitor_shield"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="ATLETICO CHOPERA ALCOBENDAS 04 'F'" />
+        <!-- Contenedor central para el resultado -->
+        <LinearLayout
+            android:id="@+id/ll_result_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-    <!-- Escudo Visitante -->
-    <ImageView
-        android:id="@+id/iv_visitor_shield"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:src="@tools:sample/avatars" />
+            <TextView
+                android:id="@+id/tv_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                tools:text="3 - 1" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tv_view_match_report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver Acta"
+                android:textColor="@android:color/holo_red_dark"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Nombre Equipo Local -->
+        <TextView
+            android:id="@+id/tv_local_team"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="start"
+            android:textStyle="normal"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/iv_local_shield"
+            app:layout_constraintEnd_toStartOf="@id/ll_result_container"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="EQUIPO LOCAL CON UN NOMBRE MUY LARGO" />
+
+        <!-- Escudo Visitante -->
+        <ImageView
+            android:id="@+id/iv_visitor_shield"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <!-- Nombre Equipo Visitante -->
+        <TextView
+            android:id="@+id/tv_visitor_team"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:gravity="end"
+            android:textStyle="normal"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/ll_result_container"
+            app:layout_constraintEnd_toStartOf="@id/iv_visitor_shield"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="EQUIPO VISITANTE" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

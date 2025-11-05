@@ -5,13 +5,6 @@ import android.annotation.SuppressLint
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-/**
- * Representa un único partido dentro de una jornada.
- *
- * Los nombres de las variables en Kotlin (camelCase) son más limpios que los del JSON (snake_case).
- * La anotación @SerializedName le dice a la librería GSON cómo mapear cada campo.
- * Por ejemplo, el campo "equipo_local" del JSON se guardará en la variable "nombreEquipoLocal".
- */
 @SuppressLint("UnsafeOptInUsageError")
 @Serializable
 data class Match(
@@ -43,10 +36,6 @@ data class Match(
     val hora: String
 )
 
-/**
- * Representa una jornada completa, que se identifica por su número
- * y contiene una lista de todos los partidos (`Match`) de esa jornada.
- */
 @SuppressLint("UnsafeOptInUsageError")
 @Serializable
 data class Round(
@@ -56,10 +45,10 @@ data class Round(
     @SerialName("jornada")
     val jornada: Int,
 
-    @SerialName("equipos") // Le dice al parser que busque "equipos" en el JSON
+    @SerialName("equipos")
     val partidos: List<Match>,
 
-    @Transient // Esta anotación evita que el parser intente leerla del JSON
+    @Transient
     val rawJsonForDebug: String? = ""
 
 )

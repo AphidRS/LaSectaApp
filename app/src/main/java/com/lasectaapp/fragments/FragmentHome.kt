@@ -9,23 +9,21 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lasectaapp.URLManager
 import com.lasectaapp.databinding.FragmentHomeBinding
+import com.lasectaapp.model.Match
 import com.lasectaapp.model.Round
+import com.lasectaapp.ui.OnMatchClickListener
 import com.lasectaapp.ui.RoundsAdapter
 import com.lasectaapp.ui.home.HomeViewModel
 
-class FragmentHome : Fragment() {
+class FragmentHome : Fragment(), OnMatchClickListener {
 
-    // ViewModel instanciado usando la delegación de ktx
     private val homeViewModel: HomeViewModel by viewModels()
-
-    // ViewBinding para acceder a las vistas de forma segura
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
-    // El adaptador para el RecyclerView principal de jornadas
     private lateinit var roundsAdapter: RoundsAdapter
 
     override fun onCreateView(
@@ -40,13 +38,7 @@ class FragmentHome : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        // 2. CONFIGURAMOS EL RECYCLERVIEW PRINCIPAL
-        // Se configura una sola vez.
         setupRecyclerView()
-
-        // 3. OBSERVAMOS LOS DATOS Y ESTADOS
-        // Este bloque se ejecutará cada vez que el estado en el ViewModel cambie.
         observeViewModel()
         val urlToFetch = URLManager.getCalendarUrl()
         homeViewModel.loadRounds(urlToFetch)
@@ -58,8 +50,7 @@ class FragmentHome : Fragment() {
         // El adaptador se creará y asignará cuando lleguen los datos.
         // --- CAMBIO CLAVE ---
         // 1. Crea el adaptador con una lista vacía.
-        roundsAdapter = RoundsAdapter(mutableListOf())
-        // 2. Asigna el adaptador inmediatamente.
+        roundsAdapter = RoundsAdapter(mutableListOf(), this)        // 2. Asigna el adaptador inmediatamente.
         binding.recyclerViewRounds.adapter = roundsAdapter
     }
 
@@ -101,5 +92,11 @@ class FragmentHome : Fragment() {
         super.onDestroyView()
         // Limpiamos la referencia al binding para evitar memory leaks.
         _binding = null
+    }
+
+    override fun onActaClick(match: Match) {
+        // SafeArgs genera este método a partir del ID de la acción que acabas de corregir
+        val action = FragmentHomeDirections.actionFragmentHomeToFragmentMatchDetails(match)
+        findNavController().navigate(action)
     }
 }

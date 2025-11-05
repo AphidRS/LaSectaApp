@@ -7,10 +7,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lasectaapp.R
+import com.lasectaapp.fragments.FragmentHome
 import com.lasectaapp.model.Round
-import com.lasectaapp.ui.adapter.MatchesAdapter
 
-class RoundsAdapter(private var rounds: MutableList<Round>) : RecyclerView.Adapter<RoundsAdapter.RoundViewHolder>() {
+class RoundsAdapter(
+    private var rounds: MutableList<Round>,
+    private val matchClickListener: FragmentHome
+) : RecyclerView.Adapter<RoundsAdapter.RoundViewHolder>() {
 
     // ViewHolder que contiene las vistas de item_round.xml
     class RoundViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -39,11 +42,10 @@ class RoundsAdapter(private var rounds: MutableList<Round>) : RecyclerView.Adapt
         holder.roundName.text = "JORNADA ${round.jornada}"
 
         // 1. Asignar el nombre de la jornada (sin cambios)
-        holder.roundName.text = "JORNADA ${round.jornada}"
-
-        // 3. Configurar el RecyclerView anidado (sin cambios)
         holder.matchesRecyclerView.layoutManager = LinearLayoutManager(holder.itemView.context)
-        val matchesAdapter = MatchesAdapter(round.partidos)
+
+        val matchesAdapter = MatchesAdapter(round.partidos, matchClickListener)
         holder.matchesRecyclerView.adapter = matchesAdapter
+
     }
 }

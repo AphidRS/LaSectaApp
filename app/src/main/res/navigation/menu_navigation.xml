@@ -7,8 +7,13 @@
 
     <fragment
         android:id="@+id/fragmentHome"
-        android:name="com.lasectaapp.fragments.FragmentHomeOld"
-        android:label="Calendario" />
+        android:name="com.lasectaapp.fragments.FragmentHome"
+        android:label="Calendario">
+
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentMatchDetails"
+            app:destination="@id/fragmentMatchDetails" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragmentClasificacion"
@@ -24,5 +29,21 @@
         android:id="@+id/fragmentPortal"
         android:name="com.lasectaapp.fragments.FragmentGemini"
         android:label="P. del Federado" />
+
+    <fragment
+        android:id="@+id/fragmentMatchDetails"
+        android:name="com.lasectaapp.fragments.FragmentMatchDetails"
+        android:label="fragment_match_details"
+        tools:layout="@layout/match_report" >
+
+        <!-- 4. ARGUMENTO QUE RECIBE -->
+        <!-- Esto le dice a SafeArgs que este fragmento espera un objeto 'Match' -->
+        <argument
+            android:name="match"
+            app:argType="com.lasectaapp.model.Match" />
+    </fragment>
+    <!-- =================================================================== -->
+    <!--                       FIN DE LA CORRECCIÓN                          -->
+    <!-- =================================================================== -->
 
 </navigation>

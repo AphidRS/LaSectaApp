@@ -1,21 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".fragments.FragmentClasificacion">
 
-    <WebView
-        android:id="@+id/webWindow"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <!-- 1. Contenedor de la cabecera con FONDO AZUL -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:minHeight="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <!-- ... (Las Guidelines no cambian) ... -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_end_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="5dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_sanction_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="35dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_gc_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="65dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_gf_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="95dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_lost_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="125dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_drawn_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="155dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_won_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="185dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_played_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="215dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_points_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="245dp" />
+
+
+        <!-- ===================== INICIO DE LA CORRECCIÓN ===================== -->
+        <!-- Vistas de texto, con un textSize="16sp" -->
+        <TextView
+            android:id="@+id/header_sanction"
+            style="@style/ClassificationTableHeader"
+            android:text="S"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:translationX="-8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end_header"
+            app:layout_constraintStart_toStartOf="@id/guideline_sanction_header"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/header_gc"
+            style="@style/ClassificationTableHeader"
+            android:text="GC"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:translationX="-8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_sanction_header"
+            app:layout_constraintStart_toStartOf="@id/guideline_gc_header"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/header_gf"
+            style="@style/ClassificationTableHeader"
+            android:text="GF"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:translationX="-8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_gc_header"
+            app:layout_constraintStart_toStartOf="@id/guideline_gf_header"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/header_lost"
+            style="@style/ClassificationTableHeader"
+            android:text="P"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:translationX="-8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_gf_header"
+            app:layout_constraintStart_toStartOf="@id/guideline_lost_header"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/header_drawn"
+            style="@style/ClassificationTableHeader"
+            android:text="E"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:translationX="-8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_lost_header"
+            app:layout_constraintStart_toStartOf="@id/guideline_drawn_header"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/header_won"
+            style="@style/ClassificationTableHeader"
+            android:text="G"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:translationX="-8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_drawn_header"
+            app:layout_constraintStart_toStartOf="@id/guideline_won_header"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/header_played"
+            style="@style/ClassificationTableHeader"
+            android:text="J"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:translationX="-8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_won_header"
+            app:layout_constraintStart_toStartOf="@id/guideline_played_header"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/header_points"
+            style="@style/ClassificationTableHeader"
+            android:text="Pts"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:translationX="-8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_played_header"
+            app:layout_constraintStart_toStartOf="@id/guideline_points_header"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!-- ====================== FIN DE LA CORRECCIÓN ======================= -->
+
+
+        <TextView
+            android:id="@+id/header_team"
+            style="@style/ClassificationTableHeader"
+            android:layout_width="0dp"
+            android:gravity="start|center_vertical"
+            android:paddingStart="40dp"
+            android:text="Equipo"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_points_header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- RecyclerView anclado directamente al contenedor de la cabecera -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_classification"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_container"
+        tools:listitem="@layout/item_clasification_row" />
+
+    <!-- ProgressBar no cambia -->
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
