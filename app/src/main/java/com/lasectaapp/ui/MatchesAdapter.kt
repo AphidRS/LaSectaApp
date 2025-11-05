@@ -41,11 +41,11 @@ class MatchesAdapter (
         if (match.goles_casa.isNullOrEmpty() || match.goles_visitante.isNullOrEmpty()) {
 
             holder.result.visibility = View.GONE
-            holder.viewMatchReport.visibility = View.VISIBLE
+            holder.viewMatchReport.visibility = View.GONE
         } else {
             holder.result.visibility = View.VISIBLE
             holder.result.text = "${match.goles_casa} - ${match.goles_visitante}"
-            holder.viewMatchReport.visibility = View.VISIBLE
+            holder.viewMatchReport.visibility = View.GONE
         }
 
         holder.viewMatchReport.setOnClickListener {

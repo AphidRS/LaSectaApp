@@ -27,37 +27,51 @@
             app:layout_constraintBottom_toBottomOf="parent"
             tools:src="@tools:sample/avatars" />
 
-        <!-- Contenedor central para el resultado -->
-        <LinearLayout
-            android:id="@+id/ll_result_container"
-            android:layout_width="wrap_content"
+        <!-- 1. CardView para el recuadro del resultado -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_result_container"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:cardBackgroundColor="@color/score_color"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tv_score"
-                android:layout_width="wrap_content"
+            <!-- 2. LinearLayout para centrar el contenido verticalmente -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                tools:text="3 - 1" />
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp">
 
-            <TextView
-                android:id="@+id/tv_view_match_report"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ver Acta"
-                android:textColor="@android:color/holo_red_dark"
-                android:textStyle="bold" />
-        </LinearLayout>
+                <!-- Texto del marcador -->
+                <TextView
+                    android:id="@+id/tv_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    tools:text="10 - 1" />
+
+                <!-- "Ver Acta" invisible -->
+                <TextView
+                    android:id="@+id/tv_view_match_report"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ver Acta"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    />
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Nombre Equipo Local -->
         <TextView
@@ -65,13 +79,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:gravity="start"
-            android:textStyle="normal"
             android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@id/iv_local_shield"
-            app:layout_constraintEnd_toStartOf="@id/ll_result_container"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="10sp"
+            android:maxLines="2"
+            android:ellipsize="end"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/cv_result_container"
+            app:layout_constraintStart_toEndOf="@id/iv_local_shield"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="EQUIPO LOCAL CON UN NOMBRE MUY LARGO" />
 
         <!-- Escudo Visitante -->
@@ -89,15 +106,18 @@
             android:id="@+id/tv_visitor_team"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:gravity="end"
-            android:textStyle="normal"
             android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@id/ll_result_container"
-            app:layout_constraintEnd_toStartOf="@id/iv_visitor_shield"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="10sp"
+            android:maxLines="2"
+            android:ellipsize="end"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="EQUIPO VISITANTE" />
+            app:layout_constraintEnd_toStartOf="@id/iv_visitor_shield"
+            app:layout_constraintStart_toEndOf="@id/cv_result_container"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="EQUIPO VISITANTE CON UN NOMBRE MUY LARGO" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

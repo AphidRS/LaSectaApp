@@ -11,14 +11,13 @@ import androidx.fragment.app.viewModels
 import com.lasectaapp.URLManager
 import com.lasectaapp.databinding.FragmentClasificacionBinding
 import com.lasectaapp.ui.ScoreboardAdapter
-import com.lasectaapp.ui.ScoreboardViewModel
+import com.lasectaapp.viewmodels.ScoreboardViewModel
 
 class FragmentClasificacion : Fragment() {
 
     private var _binding: FragmentClasificacionBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ScoreboardViewModel by viewModels()
-
 
     private lateinit var scoreboardAdapter: ScoreboardAdapter
 
@@ -37,29 +36,23 @@ class FragmentClasificacion : Fragment() {
         observeViewModel()
 
         val classificationUrl = URLManager.getClassificationUrl()
-        // ERROR 3: Se llama a la función 'loadClassification' del ViewModel.
         viewModel.loadClassification(classificationUrl)
     }
 
     private fun setupRecyclerView() {
-        // Inicializamos el adapter correcto.
         scoreboardAdapter = ScoreboardAdapter(mutableListOf())
-        // Asignamos el adapter al RecyclerView.
         binding.recyclerViewClassification.adapter = scoreboardAdapter
     }
 
     private fun observeViewModel() {
-        // ERROR 4: Ahora 'viewModel.standings' existe y es un LiveData.
         viewModel.standings.observe(viewLifecycleOwner) { standingsList ->
             scoreboardAdapter.updateData(standingsList)
         }
 
-        // ERROR 5: Ahora 'viewModel.isLoading' existe y es un LiveData.
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.isVisible = isLoading
         }
 
-        // ERROR 6: Ahora 'viewModel.error' existe y es un LiveData.
         viewModel.error.observe(viewLifecycleOwner) { errorMessage ->
             errorMessage?.let {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()

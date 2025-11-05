@@ -2,25 +2,22 @@ package com.lasectaapp
 
 import android.content.Context
 import android.os.Bundle
-import android.provider.Settings.Global.putString
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
-import com.google.gson.Gson
 import com.lasectaapp.databinding.ActivityMainBinding
 import com.lasectaapp.fragments.FragmentClasificacion
-import com.lasectaapp.fragments.FragmentGoleadores
 import com.lasectaapp.fragments.FragmentGemini
+import com.lasectaapp.fragments.FragmentGoleadores
 import com.lasectaapp.fragments.FragmentHome
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.encodeToString
-import kotlinx.serialization.decodeFromString
-import androidx.core.content.edit
+import kotlinx.serialization.json.Json
 
 class MainActivity : AppCompatActivity() {
 
@@ -146,12 +143,12 @@ class MainActivity : AppCompatActivity() {
         listDataChild[listDataHeader[0]] = CategoryURLs(
             calendarioUrl = "https://www.rffm.es/competicion/calendario?temporada=21&tipojuego=2&competicion=24037796&grupo=24037872",
             clasificacionUrl = "https://www.rffm.es/competicion/clasificaciones?temporada=21&tipojuego=2&competicion=24037796&grupo=24037872",
-            goleadoresUrl = "https://www.rffm.es/competicion/goleadores?temporada=21&tipojuego=2&competicion=24037796&grupo=24037872"
+            goleadoresUrl = "https://www.rffm.es/competicion/goleadores?temporada=21&competicion=24037796&grupo=24037872&tipojuego=2"
         )
         listDataChild[listDataHeader[1]] = CategoryURLs(
             calendarioUrl = "https://www.rffm.es/competicion/calendario?temporada=21&tipojuego=2&competicion=24037796&grupo=24037828",
             clasificacionUrl = "https://www.rffm.es/competicion/clasificaciones?temporada=21&tipojuego=2&competicion=24037796&grupo=24037828",
-            goleadoresUrl = "https://www.rffm.es/competicion/goleadores?temporada=21&tipojuego=2&competicion=24037796&grupo=24037828"
+            goleadoresUrl = "https://www.rffm.es/competicion/goleadores?temporada=21&competicion=24037796&grupo=24037828&tipojuego=2"
         )
     }
 

@@ -30,3 +30,7 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Android Studio IDE files
+/.idea
+    

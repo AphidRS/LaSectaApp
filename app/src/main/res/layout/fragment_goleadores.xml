@@ -1,21 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5"
+    tools:context=".fragments.FragmentGoleadores">
 
-    <WebView
-        android:id="@+id/webWindow"
+    <!-- Barra de Cabecera de la Tabla -->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="@color/colorPrimaryDark">
 
+        <!-- Columna 1: Hueco para el escudo (No hay texto) -->
+
+        <!-- Columna 2: Cabecera "Jugador" -->
+        <TextView
+            android:id="@+id/header_player"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:text="Jugador"
+            android:gravity="end"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/dummy"/>
+
+        <TextView
+            android:id="@+id/dummy"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:text=""
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/header_player"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/header_team" />
+
+        <!-- Columna 3: Cabecera "Equipo" -->
+        <TextView
+            android:id="@+id/header_team"
+            android:layout_width="120dp"
+            android:layout_height="20dp"
+            android:text="Equipo"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/dummy"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/header_goals" />
+
+        <!-- Columna 4: Cabecera "Goles" -->
+        <TextView
+            android:id="@+id/header_goals"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:text="Goles"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@+id/header_team"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ====================== FIN DE LA MODIFICACIÓN ======================= -->
+    <!-- RecyclerView para la lista de Goleadores -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_goleadores"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_scorer" />
+
+    <!-- Indicador de Carga (ProgressBar) -->
     <ProgressBar
         android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:visibility="gone"/>
+        android:layout_marginTop="32dp"
+        android:visibility="gone" />
 
-</FrameLayout>
+</LinearLayout>

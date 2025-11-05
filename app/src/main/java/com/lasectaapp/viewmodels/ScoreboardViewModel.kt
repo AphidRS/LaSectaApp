@@ -1,4 +1,4 @@
-package com.lasectaapp.ui
+package com.lasectaapp.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

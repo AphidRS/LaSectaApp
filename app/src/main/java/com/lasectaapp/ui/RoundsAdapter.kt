@@ -15,7 +15,6 @@ class RoundsAdapter(
     private val matchClickListener: FragmentHome
 ) : RecyclerView.Adapter<RoundsAdapter.RoundViewHolder>() {
 
-    // ViewHolder que contiene las vistas de item_round.xml
     class RoundViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val roundName: TextView = view.findViewById(R.id.tv_round_name)
         val matchesRecyclerView: RecyclerView = view.findViewById(R.id.rv_matches)

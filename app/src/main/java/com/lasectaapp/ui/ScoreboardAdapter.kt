@@ -8,7 +8,6 @@ import com.lasectaapp.databinding.ItemClasificationRowBinding
 import com.lasectaapp.model.ScoreboardModels
 
 class ScoreboardAdapter(
-    // El adaptador se inicializa con una lista mutable, que puede ser vacía al principio
     private var standings: MutableList<ScoreboardModels>
 ) : RecyclerView.Adapter<ScoreboardAdapter.StandingViewHolder>() {
 

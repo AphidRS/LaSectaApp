@@ -4,25 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.lasectaapp.fragments.FragmentHome"> <!-- Añadido tools:context para mejor soporte del IDE -->
+    tools:context="com.lasectaapp.fragments.FragmentHome">
 
-    <!-- WebView comentado como solicitaste -->
-    <!--
-    <WebView
-        android:id="@+id/webWindow"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    -->
-
-    <!-- RecyclerView para mostrar la lista de jornadas -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewRounds"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_round" /> <!-- Esta línea te da una vista previa útil del diseño de cada fila -->
+        tools:listitem="@layout/item_round" />
 
-    <!-- ProgressBar que se mostrará en el centro mientras se cargan los datos -->
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
