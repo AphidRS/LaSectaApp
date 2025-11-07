@@ -17,7 +17,7 @@
 # ¡MUY IMPORTANTE! Esto evita que R8 renombre tus clases de modelo (Data Classes)
 # y rompa el parseo del JSON.
 # Reemplaza 'com.lasectaapp.model' con el nombre real de tu paquete de modelos.
--keepclasseswithmembers class com.lasectaapp.model.** {
+-keepclasseswithmembers class com.nomasmatchapp.model.** {
     @kotlinx.serialization.Serializable <methods>;
 }
 # Mantén los serializadores generados por la librería

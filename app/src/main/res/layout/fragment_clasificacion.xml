@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".fragments.FragmentClasificacion">
 
     <!-- 1. Contenedor de la cabecera con FONDO AZUL -->
@@ -81,16 +82,13 @@
             android:orientation="vertical"
             app:layout_constraintGuide_end="245dp" />
 
-
-        <!-- ===================== INICIO DE LA CORRECCIÓN ===================== -->
-        <!-- Vistas de texto, con un textSize="16sp" -->
         <TextView
             android:id="@+id/header_sanction"
             style="@style/ClassificationTableHeader"
             android:text="S"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
-            android:translationX="-8dp"
+            android:translationX="-9dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline_end_header"
             app:layout_constraintStart_toStartOf="@id/guideline_sanction_header"
@@ -102,7 +100,7 @@
             android:text="GC"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
-            android:translationX="-8dp"
+            android:translationX="-9dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline_sanction_header"
             app:layout_constraintStart_toStartOf="@id/guideline_gc_header"
@@ -114,7 +112,7 @@
             android:text="GF"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
-            android:translationX="-8dp"
+            android:translationX="-9dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline_gc_header"
             app:layout_constraintStart_toStartOf="@id/guideline_gf_header"
@@ -126,7 +124,7 @@
             android:text="P"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
-            android:translationX="-8dp"
+            android:translationX="-9dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline_gf_header"
             app:layout_constraintStart_toStartOf="@id/guideline_lost_header"
@@ -138,7 +136,7 @@
             android:text="E"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
-            android:translationX="-8dp"
+            android:translationX="-9dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline_lost_header"
             app:layout_constraintStart_toStartOf="@id/guideline_drawn_header"
@@ -150,7 +148,7 @@
             android:text="G"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
-            android:translationX="-8dp"
+            android:translationX="-9dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline_drawn_header"
             app:layout_constraintStart_toStartOf="@id/guideline_won_header"
@@ -162,7 +160,7 @@
             android:text="J"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
-            android:translationX="-8dp"
+            android:translationX="-9dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline_won_header"
             app:layout_constraintStart_toStartOf="@id/guideline_played_header"
@@ -171,24 +169,22 @@
         <TextView
             android:id="@+id/header_points"
             style="@style/ClassificationTableHeader"
-            android:text="Pts"
+            android:text="PT"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:translationX="-8dp"
+            android:translationX="-9dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline_played_header"
             app:layout_constraintStart_toStartOf="@id/guideline_points_header"
             app:layout_constraintTop_toTopOf="parent" />
-        <!-- ====================== FIN DE LA CORRECCIÓN ======================= -->
-
 
         <TextView
             android:id="@+id/header_team"
             style="@style/ClassificationTableHeader"
             android:layout_width="0dp"
-            android:gravity="start|center_vertical"
-            android:paddingStart="40dp"
+            android:gravity="center|center_vertical"
+            android:paddingStart="25dp"
             android:text="Equipo"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
@@ -200,7 +196,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- RecyclerView anclado directamente al contenedor de la cabecera -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_classification"
         android:layout_width="0dp"
@@ -215,7 +210,6 @@
         app:layout_constraintTop_toBottomOf="@id/header_container"
         tools:listitem="@layout/item_clasification_row" />
 
-    <!-- ProgressBar no cambia -->
     <ProgressBar
         android:id="@+id/progress_bar"
         style="?android:attr/progressBarStyle"

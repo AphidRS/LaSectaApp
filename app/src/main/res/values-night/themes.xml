@@ -6,11 +6,11 @@
         <item name="colorPrimaryVariant">@color/blue_brand</item>
         <item name="colorOnPrimary">@color/white</item>
 
-        <!-- Color de fondo para componentes como la BottomNavigationView -->
-        <!-- ESTA LÍNEA SOLUCIONA EL FONDO NEGRO -->
-        <item name="android:colorBackground">@color/white</item>
-
-        <!-- Color de la barra de estado (la de arriba del todo con la hora y batería) -->
+        <item name="colorSurfaceContainer">@color/white</item>
+        <item name="colorSurfaceContainerLow">@color/white</item>
+        <item name="colorSurfaceContainerLowest">@color/white</item>
+        <item name="colorSurfaceContainerHigh">@color/white</item>
+        <item name="colorSurfaceContainerHighest">@color/white</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
 
     </style>

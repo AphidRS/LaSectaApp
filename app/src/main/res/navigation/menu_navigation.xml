@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentHome"
-        android:name="com.lasectaapp.fragments.FragmentHome"
+        android:name="com.nomasmatchapp.fragments.FragmentHome"
         android:label="Calendario">
 
         <action
@@ -17,22 +17,22 @@
 
     <fragment
         android:id="@+id/fragmentClasificacion"
-        android:name="com.lasectaapp.fragments.FragmentClasificacion"
+        android:name="com.nomasmatchapp.fragments.FragmentClasificacion"
         android:label="Clasificacion" />
 
     <fragment
         android:id="@+id/fragmentGoleadores"
-        android:name="com.lasectaapp.fragments.FragmentGoleadores"
+        android:name="com.nomasmatchapp.fragments.FragmentGoleadores"
         android:label="Goleadores" />
 
     <fragment
         android:id="@+id/fragmentPortal"
-        android:name="com.lasectaapp.fragments.FragmentGemini"
+        android:name="com.nomasmatchapp.fragments.FragmentGemini"
         android:label="P. del Federado" />
 
     <fragment
         android:id="@+id/fragmentMatchDetails"
-        android:name="com.lasectaapp.fragments.FragmentMatchDetails"
+        android:name="com.nomasmatchapp.fragments.FragmentMatchDetails"
         android:label="fragment_match_details"
         tools:layout="@layout/match_report" >
 
@@ -40,7 +40,7 @@
         <!-- Esto le dice a SafeArgs que este fragmento espera un objeto 'Match' -->
         <argument
             android:name="match"
-            app:argType="com.lasectaapp.model.Match" />
+            app:argType="com.nomasmatchapp.model.Match" />
     </fragment>
     <!-- =================================================================== -->
     <!--                       FIN DE LA CORRECCIÓN                          -->

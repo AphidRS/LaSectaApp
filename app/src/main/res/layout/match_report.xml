@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="4dp"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            app:cardBackgroundColor="@android:color/white">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -111,7 +112,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="4dp"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            app:cardBackgroundColor="@android:color/white"
+            >
 
             <!-- Usamos un LinearLayout vertical para apilar las secciones de detalles -->
             <LinearLayout

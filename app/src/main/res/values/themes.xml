@@ -1,20 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Tema Base para TODA la aplicación -->
-    <style name="Theme.LaSectaApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.NoMasMatchapp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Color primario (barra de estado, etc.) -->
         <item name="colorPrimary">@color/blue_brand</item>
         <item name="colorPrimaryVariant">@color/blue_brand</item>
         <item name="colorOnPrimary">@color/white</item>
 
-        <!-- Color de fondo para componentes como la BottomNavigationView -->
-        <!-- ESTA LÍNEA SOLUCIONA EL FONDO NEGRO -->
-        <item name="android:colorBackground">@color/white</item>
-
-        <!-- Color de la barra de estado (la de arriba del todo con la hora y batería) -->
+        <item name="colorSurfaceContainer">?attr/colorSurface</item>
+        <item name="colorSurfaceContainerLow">?attr/colorSurface</item>
+        <item name="colorSurfaceContainerLowest">?attr/colorSurface</item>
+        <item name="colorSurfaceContainerHigh">?attr/colorSurface</item>
+        <item name="colorSurfaceContainerHighest">?attr/colorSurface</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
 
     </style>
-    <style name="Theme.LaSectaApp.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.NoMasMatchapp.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- El fondo de la splash screen -->
         <item name="android:windowBackground">@color/colorPrimaryDark</item>
         <!-- El color de la barra de estado para que coincida -->

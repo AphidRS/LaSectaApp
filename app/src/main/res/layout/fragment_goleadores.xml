@@ -24,49 +24,44 @@
         <!-- Columna 2: Cabecera "Jugador" -->
         <TextView
             android:id="@+id/header_player"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="20dp"
             android:text="Jugador"
-            android:gravity="end"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="50dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/dummy"/>
-
-        <TextView
-            android:id="@+id/dummy"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:text=""
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@+id/header_player"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/header_team" />
+            app:layout_constraintEnd_toStartOf="@+id/header_team"/>
 
         <!-- Columna 3: Cabecera "Equipo" -->
         <TextView
             android:id="@+id/header_team"
-            android:layout_width="120dp"
+            android:layout_width="0dp"
             android:layout_height="20dp"
             android:text="Equipo"
+            android:textSize="16sp"
             android:gravity="center"
+            android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@+id/dummy"
+            android:layout_marginStart="85dp"
+            app:layout_constraintStart_toEndOf="@+id/header_player"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/header_goals" />
 
         <!-- Columna 4: Cabecera "Goles" -->
         <TextView
             android:id="@+id/header_goals"
-            android:layout_width="50dp"
+            android:layout_width="0dp"
             android:layout_height="20dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
             android:text="Goles"
             android:textColor="@android:color/white"
-            android:gravity="center"
+            android:gravity="end"
+            android:layout_marginEnd="10dp"
             app:layout_constraintStart_toEndOf="@+id/header_team"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

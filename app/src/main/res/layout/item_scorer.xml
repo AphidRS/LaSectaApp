@@ -10,52 +10,65 @@
     android:layout_marginEnd="8dp"
     android:layout_marginBottom="4dp"
     app:cardCornerRadius="4dp"
-    app:cardElevation="2dp">
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/white"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp">
 
-        <!-- ===================== INICIO DE LA CORRECCIÓN CON GUÍAS ===================== -->
+        <!-- ===================== INICIO DE LA REORGANIZACIÓN ===================== -->
 
-        <!-- Guías para definir las columnas -->
+        <!-- Guías ajustadas para el nuevo orden de columnas -->
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_shield_end"
+            android:id="@+id/guideline_position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.1" /> <!-- Columna del escudo -->
+            app:layout_constraintGuide_percent="0.08" /> <!-- Columna de Posición -->
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_player_end"
+            android:id="@+id/guideline_player"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.55" /> <!-- Columna del jugador -->
+            app:layout_constraintGuide_percent="0.46" /> <!-- Columna del Jugador (más ancha) -->
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_team_end"
+            android:id="@+id/guideline_shield"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.85" /> <!-- Columna del equipo -->
+            app:layout_constraintGuide_percent="0.57" /> <!-- Columna para el Escudo (entre jugador y equipo) -->
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.88" /> <!-- Columna del Equipo -->
 
 
-        <!-- Columna 1: Escudo -->
-        <ImageView
-            android:id="@+id/iv_team_shield"
-            android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:scaleType="fitCenter"
+        <!-- Columna 1: Posición (sin cambios de posición) -->
+        <TextView
+            android:id="@+id/tv_scorer_position"
+            android:layout_width="12dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_position"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_shield_end"
-            tools:src="@tools:sample/avatars" />
+            tools:text="1" />
 
         <!-- Columna 2: Nombre del Jugador -->
         <TextView
@@ -64,29 +77,41 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:textColor="@android:color/black"
-            android:textStyle="bold"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/guideline_shield_end"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_player_end"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_player"
+            app:layout_constraintStart_toEndOf="@+id/guideline_position"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="MORENO MARTINES, MARIO LARGO" />
 
-        <!-- Columna 3: Nombre del Equipo -->
+        <!-- Columna 3: Escudo (NUEVA POSICIÓN) -->
+        <ImageView
+            android:id="@+id/iv_team_shield"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_shield"
+            app:layout_constraintStart_toEndOf="@+id/guideline_player"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <!-- Columna 4: Nombre del Equipo -->
         <TextView
             android:id="@+id/tv_team_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:textSize="12sp"
+            android:layout_marginStart="4dp"
             android:textColor="@android:color/darker_gray"
-            app:layout_constraintStart_toEndOf="@+id/guideline_player_end"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_team_end"
-            tools:text="VALLECAS C.F. G" />
+            app:layout_constraintEnd_toStartOf="@+id/guideline_team"
+            app:layout_constraintStart_toEndOf="@+id/guideline_shield"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="VALLECAS C.F." />
 
-        <!-- Columna 4: Goles -->
+        <!-- Columna 5: Goles (sin cambios de posición) -->
         <TextView
             android:id="@+id/tv_goals"
             android:layout_width="0dp"
@@ -96,13 +121,13 @@
             android:textColor="@android:color/black"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/guideline_team_end"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guideline_team"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="7" />
 
-        <!-- ====================== FIN DE LA CORRECCIÓN ======================= -->
+        <!-- ====================== FIN DE LA REORGANIZACIÓN ======================= -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

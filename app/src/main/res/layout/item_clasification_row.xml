@@ -9,7 +9,8 @@
     android:layout_marginEnd="8dp"
     android:layout_marginBottom="4dp"
     app:cardCornerRadius="8dp"
-    app:cardElevation="2dp">
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@android:color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,7 +18,6 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
-        <!-- POSICIÓN (añadido textStyle="bold") -->
         <TextView
             android:id="@+id/tv_position"
             android:layout_width="24dp"
@@ -25,79 +25,71 @@
             android:gravity="center"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="1" />
 
-        <!-- ESCUDO -->
         <ImageView
             android:id="@+id/iv_shield"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_position"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
 
-        <!-- Guías invisibles que definen las columnas. -->
+        <!-- Guías -->
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="5dp" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_sanction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="35dp" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_gc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="65dp" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_gf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="95dp" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_lost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="125dp" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_drawn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="155dp" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_won"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="185dp" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_played"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="215dp" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_points"
             android:layout_width="wrap_content"
@@ -105,108 +97,199 @@
             android:orientation="vertical"
             app:layout_constraintGuide_end="245dp" />
 
-
-        <!-- ===================== INICIO DE LA CORRECCIÓN DE CENTRADO ===================== -->
-        <!-- Vistas de texto ancladas a las guías y con el texto centrado -->
+        <!-- Celdas de datos -->
         <TextView
             android:id="@+id/tv_sanction"
             style="@style/ClassificationTableCell"
             android:gravity="center"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintStart_toStartOf="@id/guideline_sanction"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="0" />
-
         <TextView
             android:id="@+id/tv_goals_against"
             style="@style/ClassificationTableCell"
             android:gravity="center"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline_sanction"
             app:layout_constraintStart_toStartOf="@id/guideline_gc"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="1" />
-
         <TextView
             android:id="@+id/tv_goals_for"
             style="@style/ClassificationTableCell"
             android:gravity="center"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline_gc"
             app:layout_constraintStart_toStartOf="@id/guideline_gf"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="10" />
-
         <TextView
             android:id="@+id/tv_lost"
             style="@style/ClassificationTableCell"
             android:gravity="center"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline_gf"
             app:layout_constraintStart_toStartOf="@id/guideline_lost"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="0" />
-
         <TextView
             android:id="@+id/tv_drawn"
             style="@style/ClassificationTableCell"
             android:gravity="center"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline_lost"
             app:layout_constraintStart_toStartOf="@id/guideline_drawn"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="0" />
-
         <TextView
             android:id="@+id/tv_won"
             style="@style/ClassificationTableCell"
             android:gravity="center"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline_drawn"
             app:layout_constraintStart_toStartOf="@id/guideline_won"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="1" />
-
         <TextView
             android:id="@+id/tv_played"
             style="@style/ClassificationTableCell"
             android:gravity="center"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline_won"
             app:layout_constraintStart_toStartOf="@id/guideline_played"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="1" />
-
         <TextView
             android:id="@+id/tv_points"
             style="@style/ClassificationTableCell"
             android:gravity="center"
             android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline_played"
             app:layout_constraintStart_toStartOf="@id/guideline_points"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="3" />
-        <!-- ====================== FIN DE LA CORRECCIÓN DE CENTRADO ======================= -->
-
-
-        <!-- NOMBRE DEL EQUIPO -->
         <TextView
             android:id="@+id/tv_team_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="3"
             android:textColor="@android:color/black"
             android:textSize="10sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline_points"
             app:layout_constraintStart_toEndOf="@id/iv_shield"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="C.D. SANTA EUGENIA 1976 'B' CON UN NOMBRE MUY LARGO" />
+
+
+        <!-- ===================== INICIO DE LA MODIFICACIÓN ===================== -->
+        <!-- ImageView de 1dp de ancho que actúan como divisores punteados -->
+
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/dotted_line_divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_sanction"
+            app:layout_constraintStart_toStartOf="@+id/tv_sanction"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/dotted_line_divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_goals_against"
+            app:layout_constraintStart_toStartOf="@+id/tv_goals_against"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/dotted_line_divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_goals_for"
+            app:layout_constraintStart_toStartOf="@+id/tv_goals_for"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/dotted_line_divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_lost"
+            app:layout_constraintStart_toStartOf="@+id/tv_lost"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/dotted_line_divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_drawn"
+            app:layout_constraintStart_toStartOf="@+id/tv_drawn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/dotted_line_divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_won"
+            app:layout_constraintStart_toStartOf="@+id/tv_won"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/dotted_line_divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_played"
+            app:layout_constraintStart_toStartOf="@+id/tv_played"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/dotted_line_divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_points"
+            app:layout_constraintStart_toStartOf="@+id/tv_points"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- ====================== FIN DE LA MODIFICACIÓN ======================= -->
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
