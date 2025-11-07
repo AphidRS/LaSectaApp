@@ -22,6 +22,7 @@ class ScorersAdapter(private var scorers: MutableList<ScorersModels>) : Recycler
 
         with(holder.binding) {
             tvPlayerName.text = scorer.playerName
+            tvScorerPosition.text = (position + 1).toString()
             tvTeamName.text = scorer.teamName
             tvGoals.text = scorer.goals
 

@@ -58,7 +58,7 @@
         <!-- Columna 1: Posición (sin cambios de posición) -->
         <TextView
             android:id="@+id/tv_scorer_position"
-            android:layout_width="12dp"
+            android:layout_width="24dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@android:color/black"
@@ -103,7 +103,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@android:color/holo_blue_dark"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline_team"
