@@ -10,6 +10,8 @@
     android:layout_marginBottom="4dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="2dp"
+    app:strokeColor="@color/blue_brand"
+    app:strokeWidth="1dp"
     app:cardBackgroundColor="@android:color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -201,15 +203,16 @@
         <!-- ImageView de 1dp de ancho que actúan como divisores punteados -->
 
         <ImageView
-            android:layout_width="1dp"
+            android:layout_width="2dp"
             android:layout_height="0dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
             android:src="@drawable/dotted_line_divider"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tv_sanction"
             app:layout_constraintStart_toStartOf="@+id/tv_sanction"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
 
         <ImageView
             android:layout_width="1dp"

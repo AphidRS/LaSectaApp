@@ -24,7 +24,7 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 2
-        versionName = "0.99.07112025"
+        versionName = "0.99.08112025"
         resValue ("string", "app_version_name", "\"${versionName}\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         val geminiApiKey = localProperties.getProperty("GEMINI_API_KEY") ?: ""
@@ -73,6 +73,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
     implementation("io.coil-kt:coil:2.6.0")
     implementation("io.coil-kt:coil-gif:2.6.0")
+    implementation("androidx.core:core-splashscreen:1.2.0")
     implementation("androidx.compose.ui:ui-text:1.9.4")
     implementation("com.google.firebase:protolite-well-known-types:18.0.1")
     testImplementation("junit:junit:4.13.2")

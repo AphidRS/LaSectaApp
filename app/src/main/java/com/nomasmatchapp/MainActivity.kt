@@ -1,5 +1,6 @@
 package com.nomasmatchapp
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.nomasmatchapp.databinding.ActivityMainBinding
@@ -27,12 +29,20 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var categorySpinner: android.widget.Spinner
 
+    @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
+        // 1. Llama a installSplashScreen() ANTES de super.onCreate()    val splashScreen = installSplashScreen()
+        installSplashScreen()
+        // 2. Llama a super.onCreate()
         super.onCreate(savedInstanceState)
+
+        // 3. Infla el layout y establece el contenido UNA SOLA VEZ usando ViewBinding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         prepareListData()
         loadSelectedUrl()
+
+
 
         if (savedInstanceState == null) {
             supportFragmentManager.commit {

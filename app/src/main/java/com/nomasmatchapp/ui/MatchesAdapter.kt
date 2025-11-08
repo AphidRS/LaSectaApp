@@ -8,11 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.nomasmatchapp.R
+import com.nomasmatchapp.fragments.FragmentHome
 import com.nomasmatchapp.model.Match
 
 class MatchesAdapter (
     private val matches: List<Match>,
-    private val listener: OnMatchClickListener
+    private val listener: FragmentHome
 ) : RecyclerView.Adapter<MatchesAdapter.MatchViewHolder>() {
 
     class MatchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -50,7 +51,7 @@ class MatchesAdapter (
         }
 
         holder.viewMatchReport.setOnClickListener {
-            listener.onActaClick(match)
+            //listener.onActaClick(match)
         }
 
         val baseImageUrl = "https://appweb.rffm.es"

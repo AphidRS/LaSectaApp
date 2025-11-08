@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Tema Base para TODA la aplicación -->
-    <style name="Theme.LaSectaApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.NoMasMatchapp" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Color primario (barra de estado, etc.) -->
         <item name="colorPrimary">@color/blue_brand</item>
         <item name="colorPrimaryVariant">@color/blue_brand</item>
@@ -13,11 +13,14 @@
         <item name="colorSurfaceContainerHighest">@color/white</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
 
+
     </style>
-    <style name="Theme.LaSectaApp.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- El fondo de la splash screen -->
-        <item name="android:windowBackground">@color/colorPrimaryDark</item>
-        <!-- El color de la barra de estado para que coincida -->
-        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <!-- Fondo del Splash Screen -->
+        <item name="windowSplashScreenBackground">@color/colorPrimaryDark</item> <!-- Usa tu color primario -->
+        <!-- El icono que se mostrará (tu icono de la app) -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/baseline_sports_soccer_24</item> <!-- O el icono que prefieras -->
+        <!-- El tema al que cambiará la app DESPUÉS del splash -->
+        <item name="postSplashScreenTheme">@style/Theme.NoMasMatchapp</item> <!-- Asegúrate de que este es tu tema principal -->
     </style>
 </resources>

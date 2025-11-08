@@ -15,17 +15,13 @@
         android:theme="@style/Theme.NoMasMatchapp"
         tools:targetApi="34">
         <activity
-            android:name="com.nomasmatchapp.SplashScreen"
+            android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.NoMasMatchapp.Splash">
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="com.nomasmatchapp.MainActivity"
-            android:exported="true">
         </activity>
     </application>
 </manifest>
