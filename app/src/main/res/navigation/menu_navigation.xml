@@ -36,11 +36,10 @@
         android:label="fragment_match_details"
         tools:layout="@layout/match_report" >
 
-        <!-- 4. ARGUMENTO QUE RECIBE -->
-        <!-- Esto le dice a SafeArgs que este fragmento espera un objeto 'Match' -->
+
         <argument
-            android:name="match"
-            app:argType="com.nomasmatchapp.model.Match" />
+            android:name="url"
+            app:argType="string" />
     </fragment>
     <!-- =================================================================== -->
     <!--                       FIN DE LA CORRECCIÓN                          -->

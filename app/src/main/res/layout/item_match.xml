@@ -7,154 +7,120 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
-    android:background="@color/white"
     app:cardElevation="2dp"
-    app:cardCornerRadius="4dp">
+    app:cardCornerRadius="8dp">
 
-    <!-- Se elimina el ConstraintLayout anidado, ahora hay uno solo -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:layout_height="90dp"
+        android:padding="4dp">
 
-        <!-- 1. Franja de la hora a la izquierda -->
         <TextView
-            android:id="@+id/tv_match_time_vertical"
-            android:layout_width="0dp"
+            android:id="@+id/tv_match_time"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:layout_marginBottom="2dp"
+            android:minWidth="70dp"
+            android:padding="4dp"
             android:gravity="center"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            android:rotation="270"
-            android:textColor="@android:color/black"
-            android:textSize="10sp"
+            android:textColor="@color/black"
+            android:background="@color/yellow"
+            android:textSize="12sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/cv_result_container"
+            app:layout_constraintEnd_toEndOf="@id/cv_result_container"
+            app:layout_constraintStart_toStartOf="@id/cv_result_container"
+            tools:text="18:30" />
+
+        <ImageView
+            android:id="@+id/img_escudo_local"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="18:30" />
-
-        <!-- 2. Escudo Local -->
-        <ImageView
-            android:id="@+id/iv_local_shield"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_match_time_vertical"
-            app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
 
-        <!-- 3. Contenedor del resultado en el centro -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cv_result_container"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/blue_brand"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/iv_visitor_shield"
-            app:layout_constraintStart_toEndOf="@+id/iv_local_shield"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp">
-
-                <!-- Texto del marcador -->
-                <TextView
-                    android:id="@+id/tv_score"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:text="10 - 1" />
-
-                <!-- "Ver Acta" invisible -->
-                <TextView
-                    android:id="@+id/tv_view_match_report"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ver Acta"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- 4. Nombre Equipo Local -->
         <TextView
-            android:id="@+id/tv_local_team"
+            android:id="@+id/team_local_name"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:ellipsize="end"
-            android:gravity="end"
-            android:maxLines="2"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/cv_result_container"
-            app:layout_constraintStart_toEndOf="@id/iv_local_shield"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="EQUIPO LOCAL CON UN NOMBRE MUY LARGO" />
-
-        <!-- 5. Escudo Visitante -->
-        <ImageView
-            android:id="@+id/iv_visitor_shield"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/dummy"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
-
-        <!-- 6. Nombre Equipo Visitante -->
-        <TextView
-            android:id="@+id/tv_visitor_team"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48sp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:gravity="start"
-            android:maxLines="2"
+            android:minLines="3"
+            android:maxLines="3"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/iv_visitor_shield"
+            app:layout_constraintEnd_toStartOf="@id/cv_result_container"
+            app:layout_constraintStart_toEndOf="@id/img_escudo_local"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.51"
+            tools:text="Equipo Local Nombre Largo" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_result_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="70dp"
+            app:cardBackgroundColor="@color/blue_brand"
+            app:cardCornerRadius="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/team_visitor_name"
+            app:layout_constraintStart_toEndOf="@+id/team_local_name"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:paddingStart="4dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="4dp">
+
+                <TextView
+                    android:id="@+id/result"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="1 - 0" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/team_visitor_name"
+            android:layout_width="0dp"
+            android:layout_height="48sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:gravity="end"
+            android:minLines="3"
+            android:maxLines="3"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/img_escudo_visitante"
             app:layout_constraintStart_toEndOf="@id/cv_result_container"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="EQUIPO VISITANTE CON UN NOMBRE MUY LARGO" />
+            tools:text="Visitante Nombre Muy Largo" />
 
-        <!-- 7. 'dummy' TextView como espaciador a la DERECHA -->
-        <TextView
-            android:id="@+id/dummy"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:gravity="center"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            android:rotation="270"
-            android:textColor="@android:color/black"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            android:visibility="visible"
+        <ImageView
+            android:id="@+id/img_escudo_visitante"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="     " />
+            tools:src="@tools:sample/avatars" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

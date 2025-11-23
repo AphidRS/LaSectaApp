@@ -1,5 +1,4 @@
-<!-- res/layout/fragment_match_details.xml -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +6,6 @@
     android:fillViewport="true"
     tools:context=".fragments.FragmentMatchDetails">
 
-    <!-- Usamos un LinearLayout como contenedor principal para las dos cards -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,8 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="4dp"
-            app:cardUseCompatPadding="true"
-            app:cardBackgroundColor="@android:color/white">
+            app:cardUseCompatPadding="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -34,13 +31,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="18dp"
-                    android:text="TEMPORADA 2025-2026 - GRUPO 3 - JORNADA 1"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="JORNADA 1 - 01/01/2025" />
 
                 <!-- Escudo Equipo Local -->
                 <ImageView
@@ -48,19 +44,9 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_marginTop="24dp"
-                    app:layout_constraintEnd_toEndOf="@id/tv_details_local_team"
-                    app:layout_constraintStart_toStartOf="@id/tv_details_local_team"
-                    app:layout_constraintTop_toBottomOf="@id/tv_match_header_info"
-                    tools:src="@tools:sample/avatars" />
-
-                <!-- Escudo Equipo Visitante -->
-                <ImageView
-                    android:id="@+id/iv_details_visitor_shield"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_marginTop="24dp"
-                    app:layout_constraintEnd_toEndOf="@id/tv_details_visitor_team"
-                    app:layout_constraintStart_toStartOf="@id/tv_details_visitor_team"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_details_result"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_match_header_info"
                     tools:src="@tools:sample/avatars" />
 
@@ -69,15 +55,24 @@
                     android:id="@+id/tv_details_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="0 - 1"
-                    android:textSize="30sp"
+                    android:textSize="32sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/iv_details_local_shield"
-                    app:layout_constraintEnd_toStartOf="@id/tv_details_visitor_team"
-                    app:layout_constraintStart_toEndOf="@id/tv_details_local_team"
-                    app:layout_constraintTop_toTopOf="@id/iv_details_local_shield" />
+                    app:layout_constraintEnd_toStartOf="@+id/iv_details_visitor_shield"
+                    app:layout_constraintStart_toEndOf="@id/iv_details_local_shield"
+                    app:layout_constraintTop_toTopOf="@id/iv_details_local_shield"
+                    tools:text="3 – 1" />
+
+                <!-- Escudo Equipo Visitante -->
+                <ImageView
+                    android:id="@+id/iv_details_visitor_shield"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_details_result"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_details_result"
+                    app:layout_constraintTop_toTopOf="@id/tv_details_result"
+                    tools:src="@tools:sample/avatars" />
 
                 <!-- Nombre Equipo Local -->
                 <TextView
@@ -85,23 +80,27 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:gravity="center"
-                    android:text="C.D.E. CIUDAD DE PINTO 'A'"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/tv_details_result"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_details_local_shield" />
+                    app:layout_constraintStart_toStartOf="@id/iv_details_local_shield"
+                    app:layout_constraintTop_toBottomOf="@id/iv_details_local_shield"
+                    tools:text="EQUIPO LOCAL MUY LARGO" />
 
                 <!-- Nombre Equipo Visitante -->
                 <TextView
                     android:id="@+id/tv_details_visitor_team"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:gravity="center"
-                    android:text="ESCUELA DE FUTBOL ARGANDA 'A'"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tv_details_result"
-                    app:layout_constraintTop_toBottomOf="@id/iv_details_visitor_shield" />
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/iv_details_visitor_shield"
+                    app:layout_constraintStart_toEndOf="@+id/tv_details_result"
+                    app:layout_constraintTop_toBottomOf="@id/iv_details_visitor_shield"
+                    tools:text="EQUIPO VISITANTE" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -112,11 +111,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="4dp"
-            app:cardUseCompatPadding="true"
-            app:cardBackgroundColor="@android:color/white"
-            >
+            app:cardUseCompatPadding="true">
 
-            <!-- Usamos un LinearLayout vertical para apilar las secciones de detalles -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -125,18 +121,15 @@
 
                 <!-- Título de Titulares -->
                 <TextView
-                    android:id="@+id/tv_titulares_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="18dp"
                     android:text="TITULARES"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
                     android:textStyle="bold" />
 
                 <!-- Contenedor para las dos columnas de alineaciones -->
                 <LinearLayout
-                    android:id="@+id/ll_lineups_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -153,8 +146,10 @@
                         android:paddingEnd="8dp"
                         tools:ignore="RtlSymmetry">
                         <!-- Jugadores locales se añadirán aquí dinámicamente -->
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="1. Jugador Local Uno"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="2. Jugador Local Dos"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="1. Jugador Local Uno" />
                     </LinearLayout>
 
                     <!-- Columna Derecha (Equipo Visitante) -->
@@ -167,8 +162,10 @@
                         android:paddingStart="8dp"
                         tools:ignore="RtlSymmetry">
                         <!-- Jugadores visitantes se añadirán aquí dinámicamente -->
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="1. Jugador Visitante Uno"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="2. Jugador Visitante Dos"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="1. Jugador Visitante Uno" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -179,10 +176,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:gravity="center"
-                    android:textSize="18dp"
                     android:text="GOLES"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
 
                 <!-- Contenedor para la lista de goles -->
                 <LinearLayout
@@ -191,10 +189,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
                     <!-- Los goles se añadirán aquí dinámicamente -->
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="(1 - 0) Jugador Local - Minuto 25"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="(1 - 1) Jugador Visitante - Minuto 78"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="(1 - 0) Jugador Local - Minuto 25" />
                 </LinearLayout>
 
                 <!-- Título Árbitros -->
@@ -217,12 +219,14 @@
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
                     <!-- Los árbitros se añadirán aquí dinámicamente -->
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="Árbitro: Nombre Apellido"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="Asistente 1: Nombre Apellido"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Árbitro: Nombre Apellido" />
                 </LinearLayout>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

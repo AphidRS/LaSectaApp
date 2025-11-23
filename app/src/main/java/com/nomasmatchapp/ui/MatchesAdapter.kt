@@ -1,75 +1,73 @@
 package com.nomasmatchapp.ui
 
+import android.R.color.white
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.nomasmatchapp.R
-import com.nomasmatchapp.fragments.FragmentHome
+import com.nomasmatchapp.databinding.ItemMatchBinding
 import com.nomasmatchapp.model.Match
 
-class MatchesAdapter (
-    private val matches: List<Match>,
-    private val listener: FragmentHome
+interface OnMatchClickListener {
+    fun onMatchClick(match: Match)
+}
+
+
+class MatchesAdapter(
+    private val listener: OnMatchClickListener
 ) : RecyclerView.Adapter<MatchesAdapter.MatchViewHolder>() {
 
-    class MatchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val localShield: ImageView = view.findViewById(R.id.iv_local_shield)
-        val localTeamName: TextView = view.findViewById(R.id.tv_local_team)
-        val result: TextView = view.findViewById(R.id.tv_score)
-        val visitorTeamName: TextView = view.findViewById(R.id.tv_visitor_team)
-        val visitorShield: ImageView = view.findViewById(R.id.iv_visitor_shield)
-        val viewMatchReport: TextView = view.findViewById(R.id.tv_view_match_report)
-        val matchTimeVertical: TextView = view.findViewById(R.id.tv_match_time_vertical) // <
-    }
+    private var matches: List<Match> = emptyList()
+
+    inner class MatchViewHolder(val binding: ItemMatchBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_match, parent, false)
-        return MatchViewHolder(view)
+        val binding = ItemMatchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MatchViewHolder(binding)
     }
 
     override fun getItemCount(): Int = matches.size
 
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: MatchViewHolder, position: Int) {
         val match = matches[position]
+        with(holder.binding) {
+            teamLocalName.text = match.equipo_local
+            teamVisitorName.text = match.equipo_visitante
+            tvMatchTime.text = match.hora
 
-        holder.localTeamName.text = match.equipo_local
-        holder.visitorTeamName.text = match.equipo_visitante
+            if (match.goles_casa.isEmpty() || match.goles_visitante.isEmpty()) {
+                result.visibility = View.GONE
+                cvResultContainer.visibility = View.INVISIBLE
+                cvResultContainer.setCardBackgroundColor(white)
+            } else {
+                result.visibility = View.VISIBLE
+                result.text = "${match.goles_casa} - ${match.goles_visitante}"
+                cvResultContainer.visibility = View.VISIBLE
+            }
 
-        if (match.goles_casa.isNullOrEmpty() || match.goles_visitante.isNullOrEmpty()) {
+            holder.itemView.setOnClickListener {
+                listener.onMatchClick(match)
+            }
 
-            holder.result.visibility = View.GONE
-            holder.viewMatchReport.visibility = View.GONE
-        } else {
-            holder.result.visibility = View.VISIBLE
-            holder.result.text = "${match.goles_casa} - ${match.goles_visitante}"
-            holder.viewMatchReport.visibility = View.GONE
+            val baseImageUrl = "https://appweb.rffm.es"
+            imgEscudoLocal.load(baseImageUrl + match.escudo_equipo_local) {
+                placeholder(R.drawable.ic_launcher_background)
+                error(R.drawable.ic_launcher_background)
+            }
+
+            imgEscudoVisitante.load(baseImageUrl + match.escudo_equipo_visitante) {
+                placeholder(R.drawable.ic_launcher_background)
+                error(R.drawable.ic_launcher_background)
+            }
         }
-
-        holder.viewMatchReport.setOnClickListener {
-            //listener.onActaClick(match)
-        }
-
-        val baseImageUrl = "https://appweb.rffm.es"
-        holder.localShield.load(baseImageUrl + match.escudo_equipo_local) {
-            placeholder(R.drawable.ic_launcher_background)
-            error(R.drawable.ic_launcher_background)
-        }
-
-        holder.visitorShield.load(baseImageUrl + match.escudo_equipo_visitante) {
-            placeholder(R.drawable.ic_launcher_background)
-            error(R.drawable.ic_launcher_background)
-        }
-
-        holder.matchTimeVertical.text = match.hora
     }
-}
 
-
-interface OnMatchClickListener {
-    fun onActaClick(match: Match)
+    fun submitList(newMatches: List<Match>) {
+        matches = newMatches
+        notifyDataSetChanged()
+    }
 }

@@ -9,17 +9,16 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-//import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nomasmatchapp.URLManager
 import com.nomasmatchapp.databinding.FragmentHomeBinding
-//mport com.nomasmatchapp.model.Match
+import com.nomasmatchapp.model.Match
 import com.nomasmatchapp.model.Round
-//import com.nomasmatchapp.ui.OnMatchClickListener
+import com.nomasmatchapp.ui.OnMatchClickListener
 import com.nomasmatchapp.ui.RoundsAdapter
 import com.nomasmatchapp.ui.home.HomeViewModel
-
-class FragmentHome : Fragment() {
+class FragmentHome : Fragment(), OnMatchClickListener {
 
     private val homeViewModel: HomeViewModel by viewModels()
     private var _binding: FragmentHomeBinding? = null
@@ -46,14 +45,18 @@ class FragmentHome : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        binding.recyclerViewRounds.layoutManager = LinearLayoutManager(requireContext())
-        roundsAdapter = RoundsAdapter(mutableListOf(), this)        // 2. Asigna el adaptador inmediatamente.
-        binding.recyclerViewRounds.adapter = roundsAdapter
+        // 1. Creamos el adapter pasándole solo el listener ('this' porque el Fragment implementa la interfaz)
+        roundsAdapter = RoundsAdapter(this)
+
+        // 2. Configuramos el RecyclerView
+        binding.recyclerViewRounds.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = roundsAdapter // 3. Asignamos el adapter
+        }
     }
 
     private fun observeViewModel() {
         homeViewModel.rounds.observe(viewLifecycleOwner) { rounds ->
-            scrollToCurrentRound(rounds)
             handleRounds(rounds)
         }
 
@@ -69,36 +72,14 @@ class FragmentHome : Fragment() {
     }
 
     private fun handleRounds(rounds: List<Round>) {
-        Log.d("HomeFragment", "Número de jornadas recibidas: ${rounds.size}") // <-- AÑADE ESTO
+        Log.d("HomeFragment", "Número de jornadas recibidas: ${rounds.size}")
         if (rounds.isNotEmpty()) {
-            roundsAdapter.updateData(rounds)
+            // Le pasamos la lista COMPLETA de jornadas al adapter.
+            // El método se llama 'submitList', no 'updateRounds'.
+            roundsAdapter.submitList(rounds)
         } else {
             Toast.makeText(requireContext(), "No se encontraron jornadas", Toast.LENGTH_LONG).show()
         }
-    }
-
-    private fun scrollToCurrentRound(rounds: List<Round>) {
-        val currentRoundIndex = findCurrentRoundIndex(rounds)
-        if (currentRoundIndex != -1) {
-            binding.recyclerViewRounds.post {
-                (binding.recyclerViewRounds.layoutManager as? LinearLayoutManager)?.scrollToPositionWithOffset(currentRoundIndex, 0)
-            }
-        }
-    }
-
-    private fun findCurrentRoundIndex(rounds: List<Round>): Int {
-        val regex = "jornada=(\\d+)".toRegex()
-        val matchResult = regex.find(urlToFetch)
-        matchResult?.let { match ->
-            val roundNumberString = match.groupValues[1]
-            val roundNumber = roundNumberString.toIntOrNull() ?: return -1
-            val index = rounds.indexOfFirst { it.jornada == roundNumber }
-
-            if (index != -1) {
-                return index
-            }
-        }
-        return 0
     }
 
     override fun onDestroyView() {
@@ -106,8 +87,21 @@ class FragmentHome : Fragment() {
         _binding = null
     }
 
-//    override fun onActaClick(match: Match) {
-//        val action = FragmentHomeDirections.actionFragmentHomeToFragmentMatchDetails(match)
-//        findNavController().navigate(action)
-//    }
+    override fun onMatchClick(actaId: Match) {
+        // 1. Obtenemos el código del acta del partido en el que se ha hecho clic.
+        val codigoActa = actaId.codacta
+
+        // 2. Usamos el URLManager para construir la URL del acta.
+        //    URLManager se encargará de saber qué opción del Spinner está seleccionada.
+        val fullUrl = URLManager.getActaUrl(codigoActa)
+
+        // 3. Navegamos al fragmento de detalles (MatchReportFragment), pasándole la URL completa.
+        //    Asegúrate de que el ID del action en tu nav_graph.xml sea correcto.
+        val action = FragmentHomeDirections.actionFragmentHomeToFragmentMatchDetails(fullUrl)
+        findNavController().navigate(action)
+
+        // Opcional: Muestra un Toast para depuración
+        Toast.makeText(requireContext(), "Cargando acta: $codigoActa", Toast.LENGTH_SHORT).show()
+
+    }
 }
